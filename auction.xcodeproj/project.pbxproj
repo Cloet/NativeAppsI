@@ -11,6 +11,8 @@
 		841CF79324D73F0500BB6A7C /* AuctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CF79224D73F0500BB6A7C /* AuctionCell.swift */; };
 		841F791924D8929700F987F9 /* AuctionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F791824D8929700F987F9 /* AuctionImage.swift */; };
 		841F791B24D8A15100F987F9 /* AuctionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */; };
+		842B436624DB39C300386CA7 /* LotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436524DB39C300386CA7 /* LotViewController.swift */; };
+		842B436824DB4EFA00386CA7 /* Lot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436724DB4EFA00386CA7 /* Lot.swift */; };
 		8482A4FC24D725EC00E41494 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A4FB24D725EC00E41494 /* AppDelegate.swift */; };
 		8482A4FE24D725EC00E41494 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A4FD24D725EC00E41494 /* SceneDelegate.swift */; };
 		8482A50024D725EC00E41494 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A4FF24D725EC00E41494 /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 		841CF79224D73F0500BB6A7C /* AuctionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionCell.swift; sourceTree = "<group>"; };
 		841F791824D8929700F987F9 /* AuctionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionImage.swift; sourceTree = "<group>"; };
 		841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionCollectionCell.swift; sourceTree = "<group>"; };
+		842B436524DB39C300386CA7 /* LotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewController.swift; sourceTree = "<group>"; };
+		842B436724DB4EFA00386CA7 /* Lot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lot.swift; sourceTree = "<group>"; };
 		8482A4F824D725EC00E41494 /* auction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = auction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8482A4FB24D725EC00E41494 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8482A4FD24D725EC00E41494 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 		8482A50F24D7268000E41494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */,
+				841CF79224D73F0500BB6A7C /* AuctionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -111,6 +117,7 @@
 			children = (
 				8482A51924D726CF00E41494 /* Auction.swift */,
 				841F791824D8929700F987F9 /* AuctionImage.swift */,
+				842B436724DB4EFA00386CA7 /* Lot.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -119,8 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				8482A51424D726B400E41494 /* AuctionListViewController.swift */,
-				841CF79224D73F0500BB6A7C /* AuctionCell.swift */,
-				841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */,
+				842B436524DB39C300386CA7 /* LotViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -262,8 +268,10 @@
 				8482A4FC24D725EC00E41494 /* AppDelegate.swift in Sources */,
 				841F791924D8929700F987F9 /* AuctionImage.swift in Sources */,
 				8482A51624D726B400E41494 /* AuctionListViewController.swift in Sources */,
+				842B436624DB39C300386CA7 /* LotViewController.swift in Sources */,
 				8482A4FE24D725EC00E41494 /* SceneDelegate.swift in Sources */,
 				8482A51A24D726CF00E41494 /* Auction.swift in Sources */,
+				842B436824DB4EFA00386CA7 /* Lot.swift in Sources */,
 				8482A51824D726C700E41494 /* AuctionAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

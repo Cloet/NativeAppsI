@@ -9,13 +9,14 @@
 import UIKit
 
 class AuctionCollectionCell: UICollectionViewCell {
-    
+
     
     @IBOutlet weak var auctionCollectionImageView: UIImageView!
     
+        
     func setImage(image : UIImage) {
         auctionCollectionImageView.image = image
     }
-    
+        
 }
 
