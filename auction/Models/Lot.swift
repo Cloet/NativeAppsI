@@ -21,4 +21,5 @@ class Lot: Object, Decodable {
     @objc dynamic var currentBid: Double = 0.0
     @objc dynamic var amountOfBids: Int = 0
     @objc dynamic var bid: Double = 0.0
+    var images: [LotImage] = []
 }
