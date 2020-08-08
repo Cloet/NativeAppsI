@@ -17,11 +17,20 @@ class LotDetailController: UIViewController {
     @IBOutlet weak var lotOverviewLabel: UILabel!
     @IBOutlet weak var lotDetailTableview: UITableView!
     
+    @IBOutlet weak var lotOpeningsBid: UILabel!
+    @IBOutlet weak var lotHighestBid: UILabel!
+    @IBOutlet weak var lotBid: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         lotTitleLabel.text = lot?.title
         lotOverviewLabel.text = lot?.overview
+        
+        lotOpeningsBid.text = "Openingsbod: \(lot?.openingsBid ?? 0)"
+        lotHighestBid.text = "Hoogste bod: \(lot?.currentBid ?? 0)"
+        lotBid.text = "Opbod: \(lot?.bid ?? 0)"
         
         AuctionAPI().getLotImages(lot: self.lot!, completion: { (data) in
             guard let data = data else {return}
