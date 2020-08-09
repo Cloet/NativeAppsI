@@ -17,13 +17,19 @@ class LotViewController : UIViewController {
     @IBOutlet weak var lotTableView: UITableView!
     
     var lots: [Lot] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         auctionTitle?.text = auction?.title
         auctionDescription?.text = auction?.overview
         
+        auctionTitle?.sizeToFit()
+        auctionDescription?.sizeToFit()
+        
+        lotTableView.tableHeaderView?.sizeToFit()
+        lotTableView.tableHeaderView?.layoutIfNeeded()
+            
         AuctionAPI().getLots(auctionId: auction!.id, completion: { (data) in
             guard let data = data else { return }
             self.lots = data
@@ -34,8 +40,8 @@ class LotViewController : UIViewController {
                 
         lotTableView.delegate = self
         lotTableView.dataSource = self
-        
-        
+        lotTableView.separatorStyle = .none
+                
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,10 +52,23 @@ class LotViewController : UIViewController {
 }
 
 extension LotViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return lots.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let lot = lots[indexPath.row]
+        let ratio = lot.images.first?.aspectRatio ?? 1.0
+        
+        var newHeight = CGFloat(tableView.bounds.width * CGFloat(ratio))
+        
+        if newHeight > 350 {
+            newHeight = 350
+        }
+        
+        return (newHeight+80)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -28,9 +28,9 @@ class LotDetailController: UIViewController {
         lotTitleLabel.text = lot?.title
         lotOverviewLabel.text = lot?.overview
         
-        lotOpeningsBid.text = "Openingsbod: \(lot?.openingsBid ?? 0)"
-        lotHighestBid.text = "Hoogste bod: \(lot?.currentBid ?? 0)"
-        lotBid.text = "Opbod: \(lot?.bid ?? 0)"
+        lotOpeningsBid.text = "Openingsbod: €\(lot?.openingsBid ?? 0)"
+        lotHighestBid.text = "Hoogste bod: €\(lot?.currentBid ?? 0)"
+        lotBid.text = "Opbod: €\(lot?.bid ?? 0)"
         
         AuctionAPI().getLotImages(lot: self.lot!, completion: { (data) in
             guard let data = data else {return}
@@ -39,9 +39,11 @@ class LotDetailController: UIViewController {
                 self.lotDetailTableview.reloadData()
             }
         })
-        
+                
         lotDetailTableview.delegate = self
         lotDetailTableview.dataSource = self
+        lotDetailTableview?.tableHeaderView?.sizeToFit()
+        lotDetailTableview?.tableHeaderView?.layoutIfNeeded()
     }
     
 }
@@ -50,6 +52,18 @@ extension LotDetailController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return images.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let ratio = self.lot?.images[indexPath.row].aspectRatio ?? 1.0
+        
+        var newHeight = CGFloat(tableView.bounds.width * CGFloat(ratio))
+             
+        if newHeight > 400 {
+            newHeight = 400
+        }
+        
+        return newHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

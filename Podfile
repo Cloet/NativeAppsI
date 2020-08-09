@@ -7,4 +7,5 @@ target 'auction' do
 
   # Pods for auction
   pod 'RealmSwift'
+
 end

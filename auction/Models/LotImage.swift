@@ -12,4 +12,5 @@ class LotImage: Object, Decodable {
     @objc dynamic var lotID: Int = 0
     @objc dynamic var id: Int = 0
     @objc dynamic var imageLocation: String = ""
+    @objc dynamic var aspectRatio: Double = 1.0
 }

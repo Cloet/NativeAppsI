@@ -12,4 +12,5 @@ class AuctionImage: Object, Decodable {
     @objc dynamic var auctionID: Int = 0
     @objc dynamic var id: Int = 0
     @objc dynamic var imageLocation: String = ""
+    @objc dynamic var aspectRatio: Double = 1.0
 }
