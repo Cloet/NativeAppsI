@@ -13,15 +13,15 @@
 		841F791B24D8A15100F987F9 /* AuctionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */; };
 		842B436624DB39C300386CA7 /* LotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436524DB39C300386CA7 /* LotViewController.swift */; };
 		842B436824DB4EFA00386CA7 /* Lot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436724DB4EFA00386CA7 /* Lot.swift */; };
+		8430F1D024E1AE5C00EA6A0E /* Auction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430F1CF24E1AE5C00EA6A0E /* Auction.swift */; };
+		8430F1D224E1AE6A00EA6A0E /* AuctionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430F1D124E1AE6A00EA6A0E /* AuctionListViewController.swift */; };
+		8430F1D424E1AEAC00EA6A0E /* AuctionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430F1D324E1AEAC00EA6A0E /* AuctionAPI.swift */; };
 		8482A4FC24D725EC00E41494 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A4FB24D725EC00E41494 /* AppDelegate.swift */; };
 		8482A4FE24D725EC00E41494 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A4FD24D725EC00E41494 /* SceneDelegate.swift */; };
 		8482A50024D725EC00E41494 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A4FF24D725EC00E41494 /* ViewController.swift */; };
 		8482A50324D725EC00E41494 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8482A50124D725EC00E41494 /* Main.storyboard */; };
 		8482A50524D725ED00E41494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8482A50424D725ED00E41494 /* Assets.xcassets */; };
 		8482A50824D725ED00E41494 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8482A50624D725ED00E41494 /* LaunchScreen.storyboard */; };
-		8482A51624D726B400E41494 /* AuctionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A51424D726B400E41494 /* AuctionListViewController.swift */; };
-		8482A51824D726C700E41494 /* AuctionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A51724D726C700E41494 /* AuctionAPI.swift */; };
-		8482A51A24D726CF00E41494 /* Auction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482A51924D726CF00E41494 /* Auction.swift */; };
 		8496E0D924DEB3BB005CEB38 /* LotImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E0D824DEB3BB005CEB38 /* LotImage.swift */; };
 		8496E0DB24DEF364005CEB38 /* LotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E0DA24DEF364005CEB38 /* LotCell.swift */; };
 		8496E0DD24DF1741005CEB38 /* LotDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E0DC24DF1741005CEB38 /* LotDetailController.swift */; };
@@ -38,6 +38,9 @@
 		841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionCollectionCell.swift; sourceTree = "<group>"; };
 		842B436524DB39C300386CA7 /* LotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewController.swift; sourceTree = "<group>"; };
 		842B436724DB4EFA00386CA7 /* Lot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lot.swift; sourceTree = "<group>"; };
+		8430F1CF24E1AE5C00EA6A0E /* Auction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auction.swift; sourceTree = "<group>"; };
+		8430F1D124E1AE6A00EA6A0E /* AuctionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuctionListViewController.swift; sourceTree = "<group>"; };
+		8430F1D324E1AEAC00EA6A0E /* AuctionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuctionAPI.swift; sourceTree = "<group>"; };
 		8482A4F824D725EC00E41494 /* auction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = auction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8482A4FB24D725EC00E41494 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8482A4FD24D725EC00E41494 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,9 +49,6 @@
 		8482A50424D725ED00E41494 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8482A50724D725ED00E41494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8482A50924D725ED00E41494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8482A51424D726B400E41494 /* AuctionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuctionListViewController.swift; path = ../../../auction_bak/auction/AuctionListViewController.swift; sourceTree = "<group>"; };
-		8482A51724D726C700E41494 /* AuctionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuctionAPI.swift; path = ../../../auction_bak/auction/Services/AuctionAPI.swift; sourceTree = "<group>"; };
-		8482A51924D726CF00E41494 /* Auction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Auction.swift; path = ../../../auction_bak/auction/Models/Auction.swift; sourceTree = "<group>"; };
 		8496E0D824DEB3BB005CEB38 /* LotImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotImage.swift; sourceTree = "<group>"; };
 		8496E0DA24DEF364005CEB38 /* LotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotCell.swift; sourceTree = "<group>"; };
 		8496E0DC24DF1741005CEB38 /* LotDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotDetailController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		8482A51024D7268600E41494 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8482A51924D726CF00E41494 /* Auction.swift */,
+				8430F1CF24E1AE5C00EA6A0E /* Auction.swift */,
 				841F791824D8929700F987F9 /* AuctionImage.swift */,
 				842B436724DB4EFA00386CA7 /* Lot.swift */,
 				8496E0D824DEB3BB005CEB38 /* LotImage.swift */,
@@ -139,7 +139,7 @@
 		8482A51124D7268A00E41494 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8482A51424D726B400E41494 /* AuctionListViewController.swift */,
+				8430F1D124E1AE6A00EA6A0E /* AuctionListViewController.swift */,
 				842B436524DB39C300386CA7 /* LotViewController.swift */,
 				8496E0DC24DF1741005CEB38 /* LotDetailController.swift */,
 			);
@@ -149,7 +149,7 @@
 		8482A51224D7269000E41494 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8482A51724D726C700E41494 /* AuctionAPI.swift */,
+				8430F1D324E1AEAC00EA6A0E /* AuctionAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -292,14 +292,14 @@
 				8482A4FC24D725EC00E41494 /* AppDelegate.swift in Sources */,
 				841F791924D8929700F987F9 /* AuctionImage.swift in Sources */,
 				8496E0DD24DF1741005CEB38 /* LotDetailController.swift in Sources */,
-				8482A51624D726B400E41494 /* AuctionListViewController.swift in Sources */,
 				8496E0E224DF3458005CEB38 /* Delegates.swift in Sources */,
+				8430F1D424E1AEAC00EA6A0E /* AuctionAPI.swift in Sources */,
+				8430F1D224E1AE6A00EA6A0E /* AuctionListViewController.swift in Sources */,
 				842B436624DB39C300386CA7 /* LotViewController.swift in Sources */,
 				8482A4FE24D725EC00E41494 /* SceneDelegate.swift in Sources */,
-				8482A51A24D726CF00E41494 /* Auction.swift in Sources */,
+				8430F1D024E1AE5C00EA6A0E /* Auction.swift in Sources */,
 				842B436824DB4EFA00386CA7 /* Lot.swift in Sources */,
 				8496E0DF24DF3218005CEB38 /* LotDetailCell.swift in Sources */,
-				8482A51824D726C700E41494 /* AuctionAPI.swift in Sources */,
 				8496E0DB24DEF364005CEB38 /* LotCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
