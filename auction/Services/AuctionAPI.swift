@@ -52,6 +52,42 @@ class AuctionAPI {
         
     }
     
+    func getLot(lotId: Int, completion: @escaping (Lot?) -> Void) {
+        let url : String = "\(API_URL)/Lots/\(lotId)"
+        
+        guard let resourceUrl = URL(string: url) else {fatalError()}
+        
+        var request = URLRequest(url: resourceUrl)
+        request.httpMethod = "GET"
+        request.setValue(API_KEY, forHTTPHeaderField: "X-Api-Key")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+            guard let json = data else {
+                completion(nil)
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                
+                let response = try decoder .decode(Lot.self, from: json)
+                completion(response)
+            } catch {
+                completion(nil)
+                print(error)
+                return
+            }
+            
+        }
+        task.resume()
+        
+        
+    }
+    
     func getLots(auctionId: Int, completion : @escaping ([Lot]?) -> Void) {
         let url : String = "\(API_URL)/Lots?auction=\(auctionId)"
         
@@ -87,14 +123,55 @@ class AuctionAPI {
         
     }
     
-    func postLotBid(lotId: Int, bid: Double, completion: @escaping (Lot?) -> Void) {
+    func getPostBodyString(params:[String:Any]) -> Data? {
+        var data = [String]()
+        for (key, value) in params {
+            data.append(key+"=\(value)")
+        }
+        return data.map { String($0) }
+            .joined(separator: "&")
+            .data(using: .utf8)
+    }
+    
+    func postLotBid(lotId: Int, bid: Double, completion: @escaping (PostMessage?) -> Void) {
         let url : String = "\(API_URL)/Lots/\(lotId)/Bid"
+        let params : [String:Any] = [
+            "newBid": bid
+        ]
         
         guard let resourceUrl = URL(string: url) else {fatalError()}
         
         var request = URLRequest(url: resourceUrl)
         request.httpMethod = "POST"
         request.setValue(API_KEY, forHTTPHeaderField: "X-Api-Key")
+        request.httpBody = getPostBodyString(params: params)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                print ("Error bidding on a lot. \(String(describing:error))")
+                completion(nil)
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                
+                let response = try decoder .decode(PostMessage.self, from: data)
+                completion(response)
+            } catch {
+                completion(nil)
+                print(error)
+                return
+            }
+            
+        }
+        task.resume()
+        
+        
     }
     
     func getLotImage(lotId: Int, imageId: Int, completion: @escaping (UIImage?) -> Void) {

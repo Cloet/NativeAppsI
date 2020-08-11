@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuctionCell: UITableViewCell, OnTapDelegate {
+class AuctionCell: CustomTableViewCell, OnTapDelegate {
     
     @IBOutlet weak var auctionTimeLeftLabel: UILabel!
     @IBOutlet weak var auctionLabel: UILabel!

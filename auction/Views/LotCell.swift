@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LotCell : UITableViewCell, OnButtonPress {
+class LotCell : CustomTableViewCell, OnInfoButtonPress, OnBidButtonPress {
     
     
     var lot : Lot?
@@ -21,12 +21,17 @@ class LotCell : UITableViewCell, OnButtonPress {
     @IBOutlet weak var lotBidButton: UIButton!
     @IBOutlet weak var lotCellContainer: UIView!
     
-    var onUpdateConstraint: (() -> ())?
-    var onClick: (() -> ())?
+    var onInfoClick: (() -> ())?
+    var onBidClick: (() -> ())?
+    
     @IBAction func LotDetails(_ sender: Any) {
-        onClick?()
+        onInfoClick?()
     }
     
+    @IBAction func lotBid(_ sender: Any) {
+        onBidClick?()
+    }
+        
     func setOnImageTap() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tagGestureRecognizer:)))
         lotImage.isUserInteractionEnabled = true
@@ -35,10 +40,6 @@ class LotCell : UITableViewCell, OnButtonPress {
     
     func setLot(lot: Lot) {
         self.lot = lot;
-
-        // Button cornerradius
-        lotInfoButton.layer.cornerRadius = 5
-        lotBidButton.layer.cornerRadius = 5
         
         // Set the label text
         var prefix = "Startbod:"
@@ -47,13 +48,10 @@ class LotCell : UITableViewCell, OnButtonPress {
         }
         
         lotTitleLabel.text = self.lot?.title
-        lotHighestBid.text = "\(prefix) €\(self.lot?.currentBid ?? 0)"
+        lotHighestBid.text = "\(prefix) € " + String(format: "%.2f",self.lot?.currentBid ?? 0)
         
         // Init the image as nil -> images can glitch otherwise
         lotImage.image = nil
-        
-        // cornerradius 2
-        lotCellContainer.layer.cornerRadius = 2        
         
         // Load the first image from the lot image array
         if (lot.images.first?.id ?? -1 > 0) {
@@ -68,7 +66,7 @@ class LotCell : UITableViewCell, OnButtonPress {
     }
     
     @objc func imageTapped(tagGestureRecognizer: UITapGestureRecognizer) {
-        onClick?()
+        onInfoClick?()
     }
     
 

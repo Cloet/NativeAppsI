@@ -18,9 +18,7 @@ class LotViewController : UIViewController {
     
     var lots: [Lot] = []
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func RefreshData() {
         auctionTitle?.text = auction?.title
         auctionDescription?.text = auction?.overview
         
@@ -37,7 +35,13 @@ class LotViewController : UIViewController {
                 self.lotTableView.reloadData()
             }
         })
-                
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        RefreshData()
+        
         lotTableView.delegate = self
         lotTableView.dataSource = self
         lotTableView.separatorStyle = .none
@@ -45,8 +49,19 @@ class LotViewController : UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let controller = segue.destination as! LotDetailController
-        controller.lot = (sender as! LotCell).lot
+        if let identifier = segue.identifier {
+            if identifier == "showLotBid" {
+                if let controller = segue.destination as? LotBiddingController {
+                    controller.lot = (sender as! LotCell).lot
+                    controller.onCallback = { [weak self] lot in
+                        self?.RefreshData()
+                    }
+                }
+            } else {
+                let controller = segue.destination as! LotDetailController
+                controller.lot = (sender as! LotCell).lot
+            }
+        }
     }
         
 }
@@ -64,8 +79,14 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
         
         var newHeight = CGFloat(tableView.bounds.width * CGFloat(ratio))
         
-        if newHeight > 350 {
-            newHeight = 350
+        if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) {
+            if newHeight > 500 {
+                newHeight = 500
+            }
+        } else {
+            if newHeight > 350 {
+                newHeight = 350
+            }
         }
         
         return (newHeight+80)
@@ -78,9 +99,14 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.setLot(lot: lot)
         
-        cell.onClick = { [weak self] in
+        cell.onInfoClick = { [weak self] in
             self?.performSegue(withIdentifier: "showLotDetail", sender: cell)
         }
+        
+        cell.onBidClick = { [weak self] in
+            self?.performSegue(withIdentifier: "showLotBid", sender: cell)
+        }
+        
         
         return cell
     }

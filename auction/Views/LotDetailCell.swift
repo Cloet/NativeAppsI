@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LotDetailCell: UITableViewCell {
+class LotDetailCell: CustomTableViewCell {
     
     
     @IBOutlet weak var lotDetailImage: UIImageView!
