@@ -81,6 +81,7 @@
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Q59-gS-4Q7" secondAttribute="bottom" constant="5" id="ELl-YK-dru"/>
                                                 <constraint firstItem="LZI-Tf-ZBh" firstAttribute="top" secondItem="oXZ-Oz-IAW" secondAttribute="top" id="HUf-Kl-pjx"/>
@@ -177,7 +178,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGJ-uO-rlw">
-                                                    <rect key="frame" x="0.0" y="4" width="414" height="270"/>
+                                                    <rect key="frame" x="0.0" y="8" width="414" height="262"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2a-Se-Nmx">
                                                             <rect key="frame" x="8" y="0.0" width="398" height="40"/>
@@ -190,10 +191,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sV7-lk-Q9l">
-                                                            <rect key="frame" x="0.0" y="40" width="414" height="180"/>
+                                                            <rect key="frame" x="0.0" y="40" width="414" height="172"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lli-TG-suP" customClass="RoundedButton" customModule="auction" customModuleProvider="target">
-                                                            <rect key="frame" x="204" y="230" width="130" height="30"/>
+                                                            <rect key="frame" x="204" y="222" width="130" height="30"/>
                                                             <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="130" id="QH7-52-Cyk"/>
@@ -208,7 +209,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKT-Xc-CAr" customClass="RoundedButton" customModule="auction" customModuleProvider="target">
-                                                            <rect key="frame" x="349" y="230" width="57" height="30"/>
+                                                            <rect key="frame" x="349" y="222" width="57" height="30"/>
                                                             <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <accessibility key="accessibilityConfiguration">
                                                                 <accessibilityTraits key="traits" image="YES"/>
@@ -227,7 +228,7 @@
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xo-0t-BJO">
-                                                            <rect key="frame" x="8" y="230" width="181" height="30"/>
+                                                            <rect key="frame" x="8" y="222" width="181" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="ADM-y8-V54"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Tql-hc-GRC"/>
@@ -237,7 +238,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="b2a-Se-Nmx" firstAttribute="top" secondItem="BGJ-uO-rlw" secondAttribute="top" id="6Tl-GH-h37"/>
                                                         <constraint firstItem="Lli-TG-suP" firstAttribute="leading" secondItem="7Xo-0t-BJO" secondAttribute="trailing" constant="15" id="A3W-Ng-z5j"/>
@@ -264,12 +265,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="BGJ-uO-rlw" secondAttribute="trailing" id="G7j-qf-yPC"/>
-                                                <constraint firstItem="BGJ-uO-rlw" firstAttribute="top" secondItem="T6F-ci-L3m" secondAttribute="top" constant="4" id="ngv-lc-wB4"/>
-                                                <constraint firstAttribute="bottom" secondItem="BGJ-uO-rlw" secondAttribute="bottom" constant="4" id="r03-zL-aD6"/>
+                                                <constraint firstItem="BGJ-uO-rlw" firstAttribute="top" secondItem="T6F-ci-L3m" secondAttribute="top" constant="8" id="ngv-lc-wB4"/>
+                                                <constraint firstAttribute="bottom" secondItem="BGJ-uO-rlw" secondAttribute="bottom" constant="8" id="r03-zL-aD6"/>
                                                 <constraint firstItem="BGJ-uO-rlw" firstAttribute="leading" secondItem="T6F-ci-L3m" secondAttribute="leading" id="xhx-4H-noL"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.20737772796848755" green="0.19905614082625114" blue="0.22159815352383427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="LotImage" destination="sV7-lk-Q9l" id="vud-av-0Bc"/>
                                             <outlet property="LotTitleLabel" destination="b2a-Se-Nmx" id="0vk-aQ-1UX"/>
@@ -561,6 +561,7 @@
                                                     <rect key="frame" x="0.0" y="4" width="414" height="227"/>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="SmV-nX-ipV" secondAttribute="trailing" id="5YN-cw-91S"/>
                                                 <constraint firstItem="SmV-nX-ipV" firstAttribute="leading" secondItem="X8i-gx-1eb" secondAttribute="leading" id="GKL-GL-UwF"/>
@@ -696,7 +697,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yH7-bG-VWn"/>
+        <segue reference="FKj-be-SJk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>

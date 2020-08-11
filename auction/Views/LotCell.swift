@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LotCell : CustomTableViewCell, OnInfoButtonPress, OnBidButtonPress {
+class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
     
     
     var lot : Lot?

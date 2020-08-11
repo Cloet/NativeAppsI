@@ -92,7 +92,10 @@ class LotBiddingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         myBid?.delegate = self
-        setLotData()
+        
+        // Always do a refresh of the data
+        // possible the highest bid has changed.
+        RefreshLot()
     }
     
 }
