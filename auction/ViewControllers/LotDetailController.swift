@@ -100,6 +100,7 @@ class LotDetailController: UIViewController {
         lotDetailTableview.AddRefreshControl(action: #selector(self.refresh(sender:)))
         lotDetailTableview.delegate = self
         lotDetailTableview.dataSource = self
+        lotDetailTableview.separatorStyle = .none
     }
     
     @objc func refresh(sender: UIRefreshControl?) {

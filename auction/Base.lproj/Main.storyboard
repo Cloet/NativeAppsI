@@ -251,6 +251,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Sol-WX-o81" firstAttribute="bottom" secondItem="wOk-11-dHL" secondAttribute="bottom" id="9Fa-h3-87h"/>
                             <constraint firstItem="Sol-WX-o81" firstAttribute="leading" secondItem="wOk-11-dHL" secondAttribute="leading" id="e4o-t9-OWF"/>
@@ -806,8 +807,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pV7-mt-eQH"/>
-        <segue reference="EZl-FW-MRS"/>
+        <segue reference="wID-wg-D5q"/>
+        <segue reference="FKj-be-SJk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
