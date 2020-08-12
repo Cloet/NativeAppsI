@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RealmSwift
+
 class AuctionListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -30,24 +32,13 @@ class AuctionListViewController: UIViewController {
             tableView.rowHeight = 245
         }
         
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         
-        setupNavBar()
+        self.setupNavBar(text: "veilingen")
     }
     
-    func setupNavBar() {
-
-        let label = UILabel()
-        label.text = "veilingen"
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 38, weight: .bold)
-        
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
-
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! LotViewController
         controller.auction = (sender as! AuctionCell).auction

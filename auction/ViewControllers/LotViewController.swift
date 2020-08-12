@@ -21,13 +21,8 @@ class LotViewController : UIViewController {
     func RefreshData() {
         auctionTitle?.text = auction?.title
         auctionDescription?.text = auction?.overview
+        lotTableView.sizeHeaderToFit()
         
-        auctionTitle?.sizeToFit()
-        auctionDescription?.sizeToFit()
-        
-        lotTableView.tableHeaderView?.sizeToFit()
-        lotTableView.tableHeaderView?.layoutIfNeeded()
-            
         AuctionAPI().getLots(auctionId: auction!.id, completion: { (data) in
             guard let data = data else { return }
             self.lots = data
@@ -47,7 +42,7 @@ class LotViewController : UIViewController {
         lotTableView.separatorStyle = .none
                 
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "showLotBid" {
@@ -65,6 +60,8 @@ class LotViewController : UIViewController {
     }
         
 }
+
+
 
 extension LotViewController: UITableViewDataSource, UITableViewDelegate {
         
@@ -89,7 +86,7 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
-        return (newHeight+80)
+        return (newHeight+100)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -17,17 +17,12 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
     @IBOutlet weak var lotTitleLabel: UILabel!
     @IBOutlet weak var lotHighestBid: UILabel!
     
-    @IBOutlet weak var lotInfoButton: UIButton!
-    @IBOutlet weak var lotBidButton: UIButton!
+    @IBOutlet weak var lotBidButton: RoundedButton!
     @IBOutlet weak var lotCellContainer: UIView!
-    
+        
     var onInfoClick: (() -> ())?
     var onBidClick: (() -> ())?
-    
-    @IBAction func LotDetails(_ sender: Any) {
-        onInfoClick?()
-    }
-    
+        
     @IBAction func lotBid(_ sender: Any) {
         onBidClick?()
     }
@@ -37,10 +32,10 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
         lotImage.isUserInteractionEnabled = true
         lotImage.addGestureRecognizer(gesture)
     }
-    
+        
     func setLot(lot: Lot) {
         self.lot = lot;
-        
+                
         // Set the label text
         var prefix = "Startbod:"
         if (lot.currentBid != lot.openingsBid) {

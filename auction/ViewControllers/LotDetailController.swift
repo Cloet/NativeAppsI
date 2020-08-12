@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LotDetailController: UIViewController {
     
@@ -28,7 +29,21 @@ class LotDetailController: UIViewController {
     @IBOutlet weak var lotAmntBids: UILabel!
         
     // Button
-    @IBOutlet weak var lotBidButton: UIButton!
+    @IBOutlet weak var lotBidButton: RoundedButton!
+    @IBOutlet weak var lotFavoriteButton: RoundedButton!
+    
+    @IBAction func lotFavoriteButton(_ sender: Any) {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            guard let lot = self.lot else {
+                fatalError("Geen geldig lot gevonden.")
+            }
+            
+            let favLot = FavoriteLot.init(id: lot.id, bid: 0, ratio: lot.images.first?.aspectRatio ?? 1.0)
+            realm.add(favLot)
+        }
+    }
     
     @IBAction func lotBidButton(_ sender: Any) {
         self.performSegue(withIdentifier: "showLotBid", sender: self)
@@ -72,7 +87,7 @@ class LotDetailController: UIViewController {
             self.images = data
             DispatchQueue.main.async {
                 self.lotDetailTableview.reloadData()
-                self.sizeHeaderToFit()
+                self.lotDetailTableview.sizeHeaderToFit()
             }
         })
     }
@@ -85,21 +100,7 @@ class LotDetailController: UIViewController {
         lotDetailTableview.delegate = self
         lotDetailTableview.dataSource = self
     }
-    
-    func sizeHeaderToFit() {
-        if let headerView = lotDetailTableview.tableHeaderView {
-            headerView.setNeedsLayout()
-            headerView.layoutIfNeeded()
-            
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var frame = headerView.frame
-            frame.size.height = height
-            headerView.frame = frame
-            
-            lotDetailTableview.tableHeaderView = headerView
-        }
-    }
-    
+        
 }
 
 extension LotDetailController: UITableViewDataSource, UITableViewDelegate {
