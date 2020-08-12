@@ -18,14 +18,9 @@ class AuctionListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AuctionAPI().getAuctions { (data) in
-            guard let data = data else { return }
-            self.auctions = data
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        
+        setupAuctions()
+        tableView.AddRefreshControl(action: #selector(self.onRefresh(_:)))
+                
         if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) {
             tableView.rowHeight = 360
         } else {
@@ -39,6 +34,21 @@ class AuctionListViewController: UIViewController {
         self.setupNavBar(text: "veilingen")
     }
     
+    func setupAuctions() {
+        AuctionAPI().getAuctions { (data) in
+            guard let data = data else { return }
+            self.auctions = data
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    @objc func onRefresh(_ sender: UIRefreshControl?) {
+        self.setupAuctions()
+        sender?.endRefreshing()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! LotViewController
         controller.auction = (sender as! AuctionCell).auction
@@ -49,6 +59,10 @@ class AuctionListViewController: UIViewController {
 
 extension AuctionListViewController: UITableViewDataSource, UITableViewDelegate {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.dataAvailable(tableView: tableView, hasData: (auctions.count > 0))
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return auctions.count
     }

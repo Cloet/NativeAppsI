@@ -37,10 +37,16 @@ class LotViewController : UIViewController {
         
         RefreshData()
         
+        lotTableView.AddRefreshControl(action: #selector(self.refresh(sender:)))
         lotTableView.delegate = self
         lotTableView.dataSource = self
         lotTableView.separatorStyle = .none
                 
+    }
+    
+    @objc func refresh(sender: UIRefreshControl?) {
+        RefreshData()
+        sender?.endRefreshing()
     }
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,7 +70,11 @@ class LotViewController : UIViewController {
 
 
 extension LotViewController: UITableViewDataSource, UITableViewDelegate {
-        
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.dataAvailable(tableView: tableView, hasData: (lots.count > 0))
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return lots.count
     }

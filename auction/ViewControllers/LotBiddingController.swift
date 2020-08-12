@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LotBiddingController: UIViewController {
     
@@ -43,6 +44,19 @@ class LotBiddingController: UIViewController {
                     if data.errorMessage.count == 0 {
                         // Save lot
                         self.lotBidError?.text = "Bod geplaatst."
+                        
+                        // toevoegen aan realm
+                        let realm = try! Realm()
+                        
+                        try! realm.write {
+                            guard let lot = self.lot else {
+                                fatalError("Geen geldig lot gevonden.")
+                            }
+                            
+                            let favLot = FavoriteLot.init(id: lot.id, bid: 0, ratio: lot.images.first?.aspectRatio ?? 1.0)
+                            realm.add(favLot)
+                        }
+                        
                     } else {
                         self.lotBidError?.text = data.errorMessage
                     }

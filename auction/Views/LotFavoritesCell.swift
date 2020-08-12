@@ -8,14 +8,34 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class LotFavoritesCell: LotCell {
     
+    var favLot: FavoriteLot?
+    var onLotRemoved: (() -> ())?
+    
     @IBOutlet weak var lotMyBid: UILabel!
     
-    var favLot: FavoriteLot?
+    // Remove lot from realm
+    @IBAction func removeLot(_ sender: Any) {
+        
+        let realm = try! Realm()
+        
+        
+        guard let favLot = self.favLot else {
+            fatalError("Geen geldig lot gevonden.")
+        }
+        
+        try! realm.write {
+            realm.delete(favLot)
+        }
+        
+        onLotRemoved?()
+    }
     
     func setLotFavorite(favlot: FavoriteLot) {
+        self.favLot = favlot
         
         AuctionAPI().getLot(lotId: favlot.lotId, completion: { (data) in
             guard let data = data else { return }

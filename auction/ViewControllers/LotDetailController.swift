@@ -96,9 +96,15 @@ class LotDetailController: UIViewController {
         super.viewDidLoad()
 
         setupLot()
-
+        
+        lotDetailTableview.AddRefreshControl(action: #selector(self.refresh(sender:)))
         lotDetailTableview.delegate = self
         lotDetailTableview.dataSource = self
+    }
+    
+    @objc func refresh(sender: UIRefreshControl?) {
+        setupLot()
+        sender?.endRefreshing()
     }
         
 }

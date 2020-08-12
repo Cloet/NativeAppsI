@@ -24,6 +24,13 @@ extension UITableView {
         }
     }
     
+    func AddRefreshControl(action: Selector) {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Herladen")
+        refreshControl.addTarget(self, action: action , for: .valueChanged)
+        self.addSubview(refreshControl)
+    }
+    
 }
 
 extension UIViewController {
@@ -38,6 +45,26 @@ extension UIViewController {
         self.navigationController?.hidesBarsOnSwipe = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
 
+    }
+    
+}
+
+extension UITableViewDataSource {
+    
+    func dataAvailable(tableView: UITableView, hasData: Bool) -> Int {
+        var numOfSections: Int = 0
+        if (hasData) {
+            numOfSections = 1
+            tableView.backgroundView = nil
+        } else {
+            let noData: UILabel = UILabel(frame: CGRect(x: 0, y:0, width: tableView.frame.width , height: tableView.frame.height))
+            noData.text = "Geen data beschikbaar."
+            noData.textAlignment = .center
+            tableView.backgroundView = noData
+            tableView.separatorStyle = .none
+        }
+        
+        return numOfSections
     }
     
 }
