@@ -29,6 +29,7 @@ class LotSearchViewController: LotViewController, UITextFieldDelegate    {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavBar(text: "Zoek Loten")
         searchTermTextField?.delegate = self
     }
     

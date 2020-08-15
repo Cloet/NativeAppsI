@@ -643,7 +643,7 @@
             </objects>
             <point key="canvasLocation" x="-90" y="-91"/>
         </scene>
-        <!--Zoek Loten-->
+        <!--Lot Search View Controller-->
         <scene sceneID="Ly8-qb-C7s">
             <objects>
                 <viewController id="g4Q-h2-v3e" customClass="LotSearchViewController" customModule="auction" customModuleProvider="target" sceneMemberID="viewController">
@@ -652,7 +652,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sad-Xk-2Mh">
-                                <rect key="frame" x="20" y="150" width="319" height="34"/>
+                                <rect key="frame" x="20" y="98" width="319" height="34"/>
                                 <color key="backgroundColor" name="TextInversecolor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="wBf-7y-P8k"/>
@@ -662,7 +662,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sAj-Ia-LmG">
-                                <rect key="frame" x="0.0" y="194" width="414" height="619"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LotCell" rowHeight="288" id="408-31-gWs" customClass="LotCell" customModule="auction" customModuleProvider="target">
@@ -775,7 +775,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojg-dR-Nhc" customClass="RoundedButton" customModule="auction" customModuleProvider="target">
-                                <rect key="frame" x="344" y="150" width="50" height="34"/>
+                                <rect key="frame" x="344" y="98" width="50" height="34"/>
                                 <color key="backgroundColor" name="Buttoncolor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Suy-MI-4ez"/>
@@ -805,7 +805,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oxZ-1w-URB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Zoek Loten" id="wnL-Rp-KZI"/>
+                    <navigationItem key="navigationItem" id="wnL-Rp-KZI"/>
                     <connections>
                         <outlet property="lotTableView" destination="sAj-Ia-LmG" id="gvd-WT-pn6"/>
                         <outlet property="searchTermTextField" destination="Sad-Xk-2Mh" id="fgM-hq-Pb1"/>
@@ -844,7 +844,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-Eq-zWr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LotCell" rowHeight="365" id="lQK-YV-GV0" customClass="LotFavoritesCell" customModule="auction" customModuleProvider="target">
@@ -976,7 +976,7 @@
                             <constraint firstItem="5tb-V0-2Vb" firstAttribute="bottom" secondItem="5d2-Eq-zWr" secondAttribute="bottom" id="7h2-ql-uWr"/>
                             <constraint firstItem="5tb-V0-2Vb" firstAttribute="trailing" secondItem="5d2-Eq-zWr" secondAttribute="trailing" id="DXq-Ll-5NS"/>
                             <constraint firstItem="5d2-Eq-zWr" firstAttribute="leading" secondItem="o2f-sD-ePg" secondAttribute="leading" id="mxk-S1-Nlg"/>
-                            <constraint firstItem="5d2-Eq-zWr" firstAttribute="top" secondItem="5tb-V0-2Vb" secondAttribute="top" id="tX9-NA-tFS"/>
+                            <constraint firstItem="5d2-Eq-zWr" firstAttribute="top" secondItem="o2f-sD-ePg" secondAttribute="top" id="tX9-NA-tFS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5tb-V0-2Vb"/>
                     </view>
@@ -1016,8 +1016,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nbr-Jl-53P" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Zoeken" image="magnifyingglass" catalog="system" id="M3s-1O-7mY"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WNl-V1-OUa">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WNl-V1-OUa">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1031,8 +1031,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wID-wg-D5q"/>
-        <segue reference="FKj-be-SJk"/>
+        <segue reference="neo-Jy-Sf1"/>
+        <segue reference="WAd-OE-kYc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
