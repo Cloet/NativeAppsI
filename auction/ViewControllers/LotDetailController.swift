@@ -14,6 +14,8 @@ class LotDetailController: UIViewController {
     var lot: Lot?
     var images: [UIImage] = []
     
+    var onRefresh: (() -> ())?
+    
     // Tableview
     @IBOutlet weak var lotDetailTableview: UITableView!
     
@@ -32,20 +34,12 @@ class LotDetailController: UIViewController {
     @IBOutlet weak var lotBidButton: RoundedButton!
     @IBOutlet weak var lotFavoriteButton: RoundedButton!
     
-    @IBAction func lotFavoriteButton(_ sender: Any) {
-        let realm = try! Realm()
-        
-        try! realm.write {
-            guard let lot = self.lot else {
-                fatalError("Geen geldig lot gevonden.")
-            }
-            
-            let favLot = FavoriteLot.init(id: lot.id, bid: 0, ratio: lot.images.first?.aspectRatio ?? 1.0)
-            realm.add(favLot)
-        }
+    @IBAction func addToFavorites(_ sender: Any) {
+        toggleFavoriet()
+        onRefresh?()
     }
     
-    @IBAction func lotBidButton(_ sender: Any) {
+    @IBAction func bidOnLot(_ sender: Any) {
         self.performSegue(withIdentifier: "showLotBid", sender: self)
     }
     
@@ -55,8 +49,37 @@ class LotDetailController: UIViewController {
             controller.onCallback = { [weak self] lot in
                 self?.lot = lot
                 self?.setupLot()
+                self?.onRefresh?()
             }
         }        
+    }
+    
+    func favorietButtonLabel(persisted: Bool) {
+        var msg = "Toevoegen aan favorieten"
+        
+        if (persisted) {
+            msg = "Verwijder van favorieten"
+        }
+        
+        lotFavoriteButton.setTitle(msg, for: .normal)
+    }
+    
+    func toggleFavoriet() {
+        guard let lot = self.lot else {
+            return
+        }
+        
+        if (lot.alreadyPersisted()) {
+            if (!lot.highestBidder()) {
+                lot.deleteFavorite()
+                favorietButtonLabel(persisted: false)
+            } else {
+                self.showOKAlert(title: lot.title ?? "Lot", message: "Kan dit lot niet verwijderen. U bent de hoogste bieder.")
+            }
+        } else {
+            self.lot?.persistToRealm()
+            self.showOKAlert(title: self.lot?.title ?? "Lot", message: "Lot toegevoegd aan favorieten.")
+        }
     }
     
     func setupLot() {
@@ -90,6 +113,8 @@ class LotDetailController: UIViewController {
                 self.lotDetailTableview.sizeHeaderToFit()
             }
         })
+        
+        favorietButtonLabel(persisted: lot?.alreadyPersisted() ?? false)
     }
     
     override func viewDidLoad() {
@@ -97,7 +122,7 @@ class LotDetailController: UIViewController {
 
         setupLot()
         
-        lotDetailTableview.AddRefreshControl(action: #selector(self.refresh(sender:)))
+        lotDetailTableview.AddRefreshControl(target: self, action: #selector(self.refresh(sender:)))
         lotDetailTableview.delegate = self
         lotDetailTableview.dataSource = self
         lotDetailTableview.separatorStyle = .none

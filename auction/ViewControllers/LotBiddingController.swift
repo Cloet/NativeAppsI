@@ -33,36 +33,34 @@ class LotBiddingController: UIViewController {
             bid = Double(txt) ?? 0
         }
         
-        if let id = lot?.id {
-            AuctionAPI().postLotBid(lotId: id, bid: bid, completion: { (data) in
-                guard let data = data else {return}
-                if data.errorMessage.count == 0 {
-                    self.RefreshLot()
-                }
-                // Indicates succes
-                DispatchQueue.main.async {
-                    if data.errorMessage.count == 0 {
-                        // Save lot
-                        self.lotBidError?.text = "Bod geplaatst."
-                        
-                        // toevoegen aan realm
-                        let realm = try! Realm()
-                        
-                        try! realm.write {
-                            guard let lot = self.lot else {
-                                fatalError("Geen geldig lot gevonden.")
-                            }
+        self.showYesNoAlert(title: "Bieden", message: "Bent u zeker dat u een bod van € " + String(format: "%2.f", bid) + " wilt plaatsen?", handlerYes: { [weak self] action in
+            
+            guard let self = self else {
+                return
+            }
+            
+            if let id = self.lot?.id {
+                AuctionAPI().postLotBid(lotId: id, bid: bid, completion: { (data) in
+                    guard let data = data else {return}
+
+                    // Indicates succes
+                    DispatchQueue.main.async {
+                        if data.errorMessage.count == 0 {
+                            // Save lot
+                            self.lotBidError?.text = "Bod geplaatst."
                             
-                            let favLot = FavoriteLot.init(id: lot.id, bid: 0, ratio: lot.images.first?.aspectRatio ?? 1.0)
-                            realm.add(favLot)
+                            // toevoegen aan realm
+                            self.lot?.updateFavoritedLotBid(bid: bid)
+                            self.RefreshLot()
+                        } else {
+                            self.lotBidError?.text = data.errorMessage
                         }
-                        
-                    } else {
-                        self.lotBidError?.text = data.errorMessage
                     }
-                }
-            })
-        }
+                })
+            }
+        }, handlerNo: nil)
+        
+
     }
     
     var onCallback: ((Lot) -> (Void))?

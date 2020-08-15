@@ -11,6 +11,7 @@
 		841CF79324D73F0500BB6A7C /* AuctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CF79224D73F0500BB6A7C /* AuctionCell.swift */; };
 		841F791924D8929700F987F9 /* AuctionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F791824D8929700F987F9 /* AuctionImage.swift */; };
 		841F791B24D8A15100F987F9 /* AuctionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */; };
+		8424A3A124E81F9B00144DCC /* LotSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424A3A024E81F9B00144DCC /* LotSearchViewController.swift */; };
 		842B436624DB39C300386CA7 /* LotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436524DB39C300386CA7 /* LotViewController.swift */; };
 		842B436824DB4EFA00386CA7 /* Lot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436724DB4EFA00386CA7 /* Lot.swift */; };
 		8430669E24E462D2008C8508 /* TextOffsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430669D24E462D2008C8508 /* TextOffsetLabel.swift */; };
@@ -44,6 +45,7 @@
 		841CF79224D73F0500BB6A7C /* AuctionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionCell.swift; sourceTree = "<group>"; };
 		841F791824D8929700F987F9 /* AuctionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionImage.swift; sourceTree = "<group>"; };
 		841F791A24D8A15100F987F9 /* AuctionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionCollectionCell.swift; sourceTree = "<group>"; };
+		8424A3A024E81F9B00144DCC /* LotSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotSearchViewController.swift; sourceTree = "<group>"; };
 		842B436524DB39C300386CA7 /* LotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewController.swift; sourceTree = "<group>"; };
 		842B436724DB4EFA00386CA7 /* Lot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lot.swift; sourceTree = "<group>"; };
 		8430669D24E462D2008C8508 /* TextOffsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOffsetLabel.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				8496E0DC24DF1741005CEB38 /* LotDetailController.swift */,
 				8430F1D524E1D1A800EA6A0E /* LotBiddingController.swift */,
 				843066A124E47B02008C8508 /* LotFavoritesViewController.swift */,
+				8424A3A024E81F9B00144DCC /* LotSearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				8430F1DE24E1E70C00EA6A0E /* PostMessage.swift in Sources */,
 				842B436624DB39C300386CA7 /* LotViewController.swift in Sources */,
 				8482A4FE24D725EC00E41494 /* SceneDelegate.swift in Sources */,
+				8424A3A124E81F9B00144DCC /* LotSearchViewController.swift in Sources */,
 				8430F1D024E1AE5C00EA6A0E /* Auction.swift in Sources */,
 				843066A024E46DF2008C8508 /* extensions.swift in Sources */,
 				842B436824DB4EFA00386CA7 /* Lot.swift in Sources */,

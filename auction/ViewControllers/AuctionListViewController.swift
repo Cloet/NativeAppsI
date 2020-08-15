@@ -19,12 +19,12 @@ class AuctionListViewController: UIViewController {
         super.viewDidLoad()
         
         setupAuctions()
-        tableView.AddRefreshControl(action: #selector(self.onRefresh(_:)))
+        tableView.AddRefreshControl(target: self, action: #selector(self.onRefresh(sender:)))
                 
         if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) {
-            tableView.rowHeight = 360
+            tableView.rowHeight = 450
         } else {
-            tableView.rowHeight = 245
+            tableView.rowHeight = 300
         }
         
         tableView.separatorStyle = .none
@@ -44,7 +44,7 @@ class AuctionListViewController: UIViewController {
         }
     }
     
-    @objc func onRefresh(_ sender: UIRefreshControl?) {
+    @objc func onRefresh(sender: UIRefreshControl?) {
         self.setupAuctions()
         sender?.endRefreshing()
     }

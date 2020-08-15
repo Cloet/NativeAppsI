@@ -24,11 +24,42 @@ extension UITableView {
         }
     }
     
-    func AddRefreshControl(action: Selector) {
+    func AddRefreshControl(target: UIViewController, action: Selector) {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Herladen")
-        refreshControl.addTarget(self, action: action , for: .valueChanged)
+        refreshControl.addTarget(target, action: action , for: .valueChanged)
         self.addSubview(refreshControl)
+    }
+    
+}
+
+extension UIButton {
+    
+    func BottomRightBorderRadius(radius: Int) {
+        self.layer.mask = nil
+        self.layer.cornerRadius = 0
+        
+        let rectShape = CAShapeLayer()
+
+        rectShape.bounds = self.frame
+        rectShape.position = self.center
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .bottomRight], cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        self.layer.mask = rectShape
+    }
+    
+}
+
+extension UIImageView {
+    
+    func TopLeftRightRadius(radii: Int) {
+        
+        self.layer.mask = nil
+        
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = self.frame
+        rectShape.position = self.center
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .topLeft , .topRight], cornerRadii: CGSize(width: radii, height: radii)).cgPath
+        self.layer.mask = rectShape
     }
     
 }
@@ -46,6 +77,22 @@ extension UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
 
     }
+    
+    func showYesNoAlert(title: String, message: String, handlerYes: ((UIAlertAction) -> Void)? , handlerNo: ((UIAlertAction) -> Void)? ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: handlerYes))
+        alert.addAction(UIAlertAction(title: "Nee", style: UIAlertAction.Style.default, handler: handlerNo))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showOKAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
 }
 

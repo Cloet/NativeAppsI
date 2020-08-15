@@ -19,7 +19,7 @@ class RoundedButton: UIButton {
         super.init(coder: coder)
         setup()
     }
-    
+        
     func setup() {
         self.layer.cornerRadius = 5
         self.backgroundColor = UIColor.link

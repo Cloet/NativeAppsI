@@ -88,6 +88,39 @@ class AuctionAPI {
         
     }
     
+    func getSearchLots(searchTerm: String, completion: @escaping ([Lot]?) -> Void) {
+        let url : String = "\(API_URL)/Lots?search=\(searchTerm)"
+        
+        guard let resourceUrl = URL(string: url) else { fatalError() }
+        
+        var request = URLRequest(url: resourceUrl)
+        request.httpMethod = "GET"
+        request.setValue(API_KEY, forHTTPHeaderField: "X-Api-Key")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                
+                let response = try decoder.decode([Lot].self, from: data)
+                completion(response)
+            } catch {
+                completion(nil)
+                print(error)
+                return
+            }
+            
+        }
+        task.resume()
+    }
+    
     func getLots(auctionId: Int, completion : @escaping ([Lot]?) -> Void) {
         let url : String = "\(API_URL)/Lots?auction=\(auctionId)"
         

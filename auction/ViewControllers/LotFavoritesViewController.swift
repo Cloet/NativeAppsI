@@ -25,7 +25,7 @@ class LotFavoritesViewController: UIViewController {
         tableView.separatorStyle = .none
         
         RefreshData()
-        tableView.AddRefreshControl(action: #selector(self.refresh(sender:)))
+        tableView.AddRefreshControl(target: self, action: #selector(self.refresh(sender:)))
     }
     
     @objc func refresh(sender: UIRefreshControl?) {
@@ -48,11 +48,19 @@ class LotFavoritesViewController: UIViewController {
                     controller.lot = (sender as! LotFavoritesCell).lot
                     controller.onCallback = { [weak self] lot in
                         self?.RefreshData()
+                        
+                        guard let fav = lot.getFavoritedLot(lotId: lot.id) else {
+                            return
+                        }
+                        (sender as! LotFavoritesCell).setLotFavorite(favlot: fav)
                     }
                 }
             } else {
                 let controller = segue.destination as! LotDetailController
                 controller.lot = (sender as! LotFavoritesCell).lot
+                controller.onRefresh = { [weak self] in
+                    self?.RefreshData()
+                }
             }
         }
     }
@@ -98,6 +106,10 @@ extension LotFavoritesViewController: UITableViewDataSource, UITableViewDelegate
         
         cell.onLotRemoved = { [weak self] in
             self?.RefreshData()
+        }
+        
+        cell.onHighestBidder = { [weak self] in
+            self?.showOKAlert(title: cell.lot?.title ?? "Lot", message: "Kan dit lot niet verwijderen. U bent de hoogste bieder.")
         }
         
         cell.onInfoClick = { [weak self] in

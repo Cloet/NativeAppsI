@@ -19,23 +19,83 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
     
     @IBOutlet weak var lotBidButton: RoundedButton!
     @IBOutlet weak var lotCellContainer: UIView!
-        
+    @IBOutlet weak var lotFavoriteButton: UIButton!
+    
+    
+    @IBAction func favoriteLot(_ sender: Any) {
+        toggleFavorite()
+    }
+    
+    var onHighestBidder: (() -> ())?
     var onInfoClick: (() -> ())?
     var onBidClick: (() -> ())?
         
     @IBAction func lotBid(_ sender: Any) {
         onBidClick?()
     }
-        
-    func setOnImageTap() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tagGestureRecognizer:)))
-        lotImage.isUserInteractionEnabled = true
-        lotImage.addGestureRecognizer(gesture)
+    
+    func toggleFavorite() {
+        guard let lot = self.lot else {
+            fatalError("Ongeldig lot.")
+        }
+        if (!lot.highestBidder()) {
+            lot.toggleFavorited()
+            setFavoriteButtonIcon()
+        } else {
+            onHighestBidder?()
+        }
     }
+    
+    func setup(lot: Lot) {
+        self.setLot(lot: lot)
+        self.setContainer()
+    }
+    
+    func setContainer() {
         
+        lotBidButton?.BottomRightBorderRadius(radius: 20)
+        
+        lotCellContainer?.layer.borderWidth = 1
+        lotCellContainer?.layer.cornerRadius = 20
+                
+        lotCellContainer?.layer.shadowPath = UIBezierPath(roundedRect: lotCellContainer.bounds, cornerRadius: 20).cgPath
+        lotCellContainer?.layer.shadowRadius = 4
+        lotCellContainer?.layer.shadowOffset = .zero
+        lotCellContainer?.layer.shadowOpacity = 0.6
+    }
+    
+    func setOnImageTap() {
+        lotImage.isUserInteractionEnabled = true
+        
+        // Add tap
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tagGestureRecognizer:)))
+        gesture.numberOfTapsRequired = 1
+        lotImage.addGestureRecognizer(gesture)
+        // Double tap
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(tapGestureRecognizer:)))
+        tap.numberOfTapsRequired = 2
+        lotImage.addGestureRecognizer(tap)
+        
+        gesture.require(toFail: tap)
+    }
+    
+    func setFavoriteButtonIcon() {
+        guard let lot = self.lot else {
+            fatalError("Ongeldig lot.")
+        }
+        
+        if (lot.alreadyPersisted()) {
+            self.lotFavoriteButton?.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            self.lotFavoriteButton?.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
+    
     func setLot(lot: Lot) {
         self.lot = lot;
-                
+        
+        setFavoriteButtonIcon()
+        
         // Set the label text
         var prefix = "Startbod:"
         if (lot.currentBid != lot.openingsBid) {
@@ -55,6 +115,7 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
                 DispatchQueue.main.async {
                     self.lotImage.image = data
                     self.setOnImageTap()
+                    self.lotImage.TopLeftRightRadius(radii: 20)
                 }
             })
         }
@@ -64,6 +125,9 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
         onInfoClick?()
     }
     
+    @objc func imageDoubleTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        toggleFavorite()
+    }
 
     
     

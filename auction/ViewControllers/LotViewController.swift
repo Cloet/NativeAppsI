@@ -18,11 +18,7 @@ class LotViewController : UIViewController {
     
     var lots: [Lot] = []
 
-    func RefreshData() {
-        auctionTitle?.text = auction?.title
-        auctionDescription?.text = auction?.overview
-        lotTableView.sizeHeaderToFit()
-        
+    func LoadData() {
         AuctionAPI().getLots(auctionId: auction!.id, completion: { (data) in
             guard let data = data else { return }
             self.lots = data
@@ -32,15 +28,23 @@ class LotViewController : UIViewController {
         })
     }
     
+    func RefreshData() {
+        auctionTitle?.text = auction?.title
+        auctionDescription?.text = auction?.overview
+        lotTableView?.sizeHeaderToFit()
+        
+        LoadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         RefreshData()
         
-        lotTableView.AddRefreshControl(action: #selector(self.refresh(sender:)))
-        lotTableView.delegate = self
-        lotTableView.dataSource = self
-        lotTableView.separatorStyle = .none
+        lotTableView?.AddRefreshControl(target: self, action: #selector(self.refresh(sender:)))
+        lotTableView?.delegate = self
+        lotTableView?.dataSource = self
+        lotTableView?.separatorStyle = .none
                 
     }
     
@@ -61,6 +65,9 @@ class LotViewController : UIViewController {
             } else {
                 let controller = segue.destination as! LotDetailController
                 controller.lot = (sender as! LotCell).lot
+                controller.onRefresh = { [weak self] in
+                    self?.RefreshData()
+                }
             }
         }
     }
@@ -104,7 +111,7 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LotCell") as! LotCell
         
-        cell.setLot(lot: lot)
+        cell.setup(lot: lot)
         
         cell.onInfoClick = { [weak self] in
             self?.performSegue(withIdentifier: "showLotDetail", sender: cell)
@@ -112,6 +119,10 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.onBidClick = { [weak self] in
             self?.performSegue(withIdentifier: "showLotBid", sender: cell)
+        }
+        
+        cell.onHighestBidder = { [weak self] in
+            self?.showOKAlert(title: lot.title ?? "Lot", message: "Dit lot kan niet verwijderd worden. U bent momenteel de hoogste bieder.")
         }
         
         

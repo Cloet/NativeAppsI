@@ -15,27 +15,37 @@ class LotFavoritesCell: LotCell {
     var favLot: FavoriteLot?
     var onLotRemoved: (() -> ())?
     
+    @IBOutlet weak var lotDeleteButton: RoundedButton!
     @IBOutlet weak var lotMyBid: UILabel!
     
-    // Remove lot from realm
     @IBAction func removeLot(_ sender: Any) {
-        
-        let realm = try! Realm()
-        
-        
-        guard let favLot = self.favLot else {
-            fatalError("Geen geldig lot gevonden.")
+        guard let lot = self.lot else {
+            return
         }
-        
-        try! realm.write {
-            realm.delete(favLot)
+        if (lot.highestBidder()) {
+            onHighestBidder?()
+        } else {
+            lot.deleteFavorite()
+            onLotRemoved?()
         }
+    }
+    
+    // Remove lot from realm
         
-        onLotRemoved?()
+    override func setLot(lot: Lot) {
+        super.setLot(lot: lot)
+        lotMyBid.text = "Mijn bod: € " + String(format: "%.2f", self.favLot?.myBid ?? 0)
     }
     
     func setLotFavorite(favlot: FavoriteLot) {
         self.favLot = favlot
+        
+        self.setContainer()
+        
+        lotBidButton?.layer.cornerRadius = 0
+        lotBidButton?.layer.mask = nil
+        lotDeleteButton?.layer.cornerRadius = 0
+        lotDeleteButton?.BottomRightBorderRadius(radius: 20)
         
         AuctionAPI().getLot(lotId: favlot.lotId, completion: { (data) in
             guard let data = data else { return }
@@ -44,7 +54,7 @@ class LotFavoritesCell: LotCell {
             }
         })
         
-        lotMyBid.text = "Mijn bod: € " + String(format: "%.2f", self.favLot?.myBid ?? 0)
+
     }
     
 }
