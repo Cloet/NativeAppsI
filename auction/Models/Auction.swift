@@ -6,15 +6,15 @@
 //  Copyright © 2020 mathias cloet. All rights reserved.
 //
 
-import RealmSwift
+import Foundation
 
-class Auction: Object, Decodable {
-    @objc dynamic var id: Int = 0
-    @objc dynamic var title: String? = ""
-    @objc dynamic var overview: String? = ""
-    @objc dynamic var startDate: Date? = nil
-    @objc dynamic var endDate: Date? = nil
-    @objc dynamic var lots: String? = ""
+class Auction: Decodable {
+    var id: Int = 0
+    var title: String? = ""
+    var overview: String? = ""
+    var startDate: Date? = nil
+    var endDate: Date? = nil
+    var lots: String? = ""
     var images: [AuctionImage] = []
-    @objc dynamic var status : Int = 0
+    var status : Int = 0
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Default button style with rounded corners etc.
 class RoundedButton: UIButton {
     
     override init(frame: CGRect) {

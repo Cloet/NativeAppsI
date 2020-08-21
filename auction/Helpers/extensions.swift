@@ -8,8 +8,11 @@
 
 import UIKit
 
+// All extension used in this project.
+
 extension UITableView {
-    
+        
+    // Used to change the change of the header.
     func sizeHeaderToFit() {
         if let headerView = self.tableHeaderView {
             headerView.setNeedsLayout()
@@ -24,6 +27,7 @@ extension UITableView {
         }
     }
     
+    // Adds a default refreshcontrol to the tableview.
     func AddRefreshControl(target: UIViewController, action: Selector) {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Herladen")
@@ -35,6 +39,7 @@ extension UITableView {
 
 extension UIButton {
     
+    // Border to bottomright corner
     func BottomRightBorderRadius(radius: Int) {
         self.layer.mask = nil
         self.layer.cornerRadius = 0
@@ -51,6 +56,7 @@ extension UIButton {
 
 extension UIImageView {
     
+    // Create a corner of top left and right corner
     func TopLeftRightRadius(radii: Int) {
         
         self.layer.mask = nil
@@ -66,6 +72,7 @@ extension UIImageView {
 
 extension UIViewController {
     
+    // Setup a custom big navbar with defined text
     func setupNavBar(text: String) {
 
         let label = UILabel()
@@ -78,6 +85,7 @@ extension UIViewController {
 
     }
     
+    // Show a yes no alert with custom Yes/No action.
     func showYesNoAlert(title: String, message: String, handlerYes: ((UIAlertAction) -> Void)? , handlerNo: ((UIAlertAction) -> Void)? ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: handlerYes))
@@ -86,6 +94,7 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Shows an alert with only an OK button.
     func showOKAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -98,6 +107,7 @@ extension UIViewController {
 
 extension UITableViewDataSource {
     
+    // If no data is available show a message.
     func dataAvailable(tableView: UITableView, hasData: Bool) -> Int {
         var numOfSections: Int = 0
         if (hasData) {
