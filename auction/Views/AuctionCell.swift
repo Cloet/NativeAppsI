@@ -8,18 +8,22 @@
 
 import UIKit
 
-class AuctionCell: UITableViewCell, OnTapDelegate {
+class AuctionCell: UITableViewCell {
     
+    // Labels
     @IBOutlet weak var auctionTimeLeftLabel: UILabel!
     @IBOutlet weak var auctionLabel: UILabel!
     @IBOutlet weak var auctionImageCollection: UICollectionView!
     @IBOutlet weak var pageView: UIPageControl!
     
+    // Images & auctions
     var images: [UIImage] = []
     var auction: Auction?
     
+    // When an image is tapped.
     var onTap: ((IndexPath) -> Void)?=nil
     
+    // Set the data of an auction.
     func setAuction(auction: Auction) {
         self.auction = auction
         
@@ -48,6 +52,7 @@ class AuctionCell: UITableViewCell, OnTapDelegate {
         
     }
     
+    // Set the title label with specific markup.
     func UpdateAuctionTitleLabel() {
         // Label adding a stroke
         let strokeTextAttributes = [
@@ -59,6 +64,7 @@ class AuctionCell: UITableViewCell, OnTapDelegate {
         auctionLabel.attributedText = NSMutableAttributedString(string: self.auction!.title ?? "", attributes: strokeTextAttributes)
     }
     
+    // Calculate the time remaining for an auction and display it.
     func UpdateTimeLabel() {
         // Add rounded borders to the bottom & setting backgroundcolor to black
         auctionTimeLeftLabel.layer.backgroundColor = UIColor.black.cgColor
@@ -96,6 +102,7 @@ class AuctionCell: UITableViewCell, OnTapDelegate {
         
     }
     
+    // Convert timeinterval to a string.
     func stringFromTimeInterval(interval: TimeInterval) -> String {
         let ti = NSInteger(interval)
         

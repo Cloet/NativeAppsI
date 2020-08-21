@@ -223,7 +223,7 @@
                                                             <color key="tintColor" name="Textcolor"/>
                                                             <state key="normal" image="heart" catalog="system"/>
                                                             <connections>
-                                                                <action selector="favoriteLot:" destination="Fxt-ru-9wa" eventType="touchUpInside" id="Z1Q-VE-hMm"/>
+                                                                <action selector="toggleFavorited:" destination="Fxt-ru-9wa" eventType="touchUpInside" id="If0-7y-hjB"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -527,7 +527,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="addToFavorites:" destination="R7B-cB-9BY" eventType="touchUpInside" id="uRD-tt-WgF"/>
+                                                <action selector="toggleFavorited:" destination="R7B-cB-9BY" eventType="touchUpInside" id="wju-hy-h1m"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1031,8 +1031,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="neo-Jy-Sf1"/>
-        <segue reference="WAd-OE-kYc"/>
+        <segue reference="wID-wg-D5q"/>
+        <segue reference="FKj-be-SJk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>

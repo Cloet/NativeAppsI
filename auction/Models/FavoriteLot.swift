@@ -13,6 +13,7 @@ class FavoriteLot: Object {
     @objc dynamic var myBid: Double = 0.0
     @objc dynamic var imgRatio: Double = 0.0
     
+    // Constructor
     convenience init(id: Int, bid: Double, ratio: Double) {
         self.init()
         self.lotId = id

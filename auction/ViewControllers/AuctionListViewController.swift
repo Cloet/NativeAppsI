@@ -6,21 +6,27 @@
 //
 
 import UIKit
-
 import RealmSwift
 
+// Homepage
+// Shows a list of auctions.
 class AuctionListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    // The auctions items that are shown
     var auctions:  [Auction] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupAuctions()
+        
+        // Adds a refreshcontrol
         tableView.AddRefreshControl(target: self, action: #selector(self.onRefresh(sender:)))
-                
+        
+        // Bigger rowheigt for tablet
         if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) {
             tableView.rowHeight = 450
         } else {
@@ -49,6 +55,7 @@ class AuctionListViewController: UIViewController {
         sender?.endRefreshing()
     }
     
+    // Set the auction when navigating to the LotViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! LotViewController
         controller.auction = (sender as! AuctionCell).auction
@@ -58,7 +65,8 @@ class AuctionListViewController: UIViewController {
 
 
 extension AuctionListViewController: UITableViewDataSource, UITableViewDelegate {
-
+    
+    // Checks if no data is available.
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataAvailable(tableView: tableView, hasData: (auctions.count > 0))
     }
@@ -74,6 +82,7 @@ extension AuctionListViewController: UITableViewDataSource, UITableViewDelegate 
     
         cell.setAuction(auction: auction)
         
+        // Detect when an image is tapped, then navigate to detail.
         cell.onTap = { [weak self] indexPath in
             self?.performSegue(withIdentifier: "showAuctionDetail", sender: cell)
         }

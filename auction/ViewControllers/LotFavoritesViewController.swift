@@ -10,8 +10,10 @@ import Foundation
 import UIKit
 import RealmSwift
 
+// Show a list of all favorited lots
 class LotFavoritesViewController: UIViewController {
     
+    // All favorited lots
     var lots: [FavoriteLot] = []
     @IBOutlet weak var tableView: UITableView!
     
@@ -40,7 +42,7 @@ class LotFavoritesViewController: UIViewController {
         tableView?.reloadData()
     }
     
-    
+    // Navigate to biddingcontroler or detailcontroller.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "showLotBid" {
@@ -82,8 +84,10 @@ extension LotFavoritesViewController: UITableViewDataSource, UITableViewDelegate
         let lot = lots[indexPath.row]
         let ratio = lot.imgRatio
         
+        // calculate image height based on width and image aspectratio.
         var newHeight = CGFloat(tableView.bounds.width * CGFloat(ratio))
         
+        // Maximum height of an image, depending on tablet or phone.
         if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) {
             if newHeight > 500 {
                 newHeight = 500
@@ -104,18 +108,22 @@ extension LotFavoritesViewController: UITableViewDataSource, UITableViewDelegate
         
         cell.setLotFavorite(favlot: lot)
         
+        // When a lot is removed refresh the current list.
         cell.onLotRemoved = { [weak self] in
             self?.RefreshData()
         }
         
+        // Show an alert when trying to delete the lot when you have the highest bid.
         cell.onHighestBidder = { [weak self] in
             self?.showOKAlert(title: cell.lot?.title ?? "Lot", message: "Kan dit lot niet verwijderen. U bent de hoogste bieder.")
         }
         
+        // Navigate to details controller
         cell.onInfoClick = { [weak self] in
             self?.performSegue(withIdentifier: "showLotDetail", sender: cell)
         }
         
+        // Navigate to bidding controller.
         cell.onBidClick = { [weak self] in
             self?.performSegue(withIdentifier: "showLotBid", sender: cell)
         }

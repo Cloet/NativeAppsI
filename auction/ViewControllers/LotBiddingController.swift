@@ -11,8 +11,10 @@ import RealmSwift
 
 class LotBiddingController: UIViewController {
     
+    // The current lot
     var lot: Lot?
     
+    // Alle labels
     @IBOutlet weak var lotTitle: UILabel!
     @IBOutlet weak var lotOverview: UILabel!
     
@@ -21,11 +23,15 @@ class LotBiddingController: UIViewController {
     @IBOutlet weak var lotBid: UILabel!
     @IBOutlet weak var lotMinNextBid: UILabel!
     @IBOutlet weak var lotAmntOfBids: UILabel!
-
-    @IBOutlet weak var myBid: UITextField!
     @IBOutlet weak var lotBidError: UILabel!
+
+    // The field where the bid is entered
+    @IBOutlet weak var myBid: UITextField!
     
-    // Bieden
+    // Callback to refresh the view from which it originated.
+    var onCallback: ((Lot) -> (Void))?
+    
+    // Place a bid on the currently selected lot.
     @IBAction func placeBid(_ sender: Any) {
         
         var bid = 0.0
@@ -62,9 +68,7 @@ class LotBiddingController: UIViewController {
         
 
     }
-    
-    var onCallback: ((Lot) -> (Void))?
-    
+        
     // Huidig lot herladen
     func RefreshLot() {
         if let id = lot?.id {
@@ -79,6 +83,7 @@ class LotBiddingController: UIViewController {
         }
     }
     
+    // Set all data of the currently selected lot.
     func setLotData() {
         lotTitle?.text = lot?.title
         lotOverview?.text = lot?.overview
@@ -114,6 +119,7 @@ class LotBiddingController: UIViewController {
 
 extension LotBiddingController: UITextFieldDelegate {
     
+    // Only allow numbers.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedChars = CharacterSet.decimalDigits
         let charset = CharacterSet(charactersIn: string)

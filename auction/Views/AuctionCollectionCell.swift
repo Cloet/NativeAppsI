@@ -10,10 +10,10 @@ import UIKit
 
 class AuctionCollectionCell: UICollectionViewCell {
 
-    
+    // The image.
     @IBOutlet weak var auctionCollectionImageView: UIImageView!
     
-        
+    // Set an image.
     func setImage(image : UIImage) {
         auctionCollectionImageView.image = image
     }

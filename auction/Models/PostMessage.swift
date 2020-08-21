@@ -6,9 +6,9 @@
 //  Copyright © 2020 mathias cloet. All rights reserved.
 //
 
-import RealmSwift
+import Foundation
 
-class PostMessage: Object, Decodable {
-    @objc dynamic var message: String = ""
-    @objc dynamic var errorMessage: String = ""
+class PostMessage: Decodable {
+    var message: String = ""
+    var errorMessage: String = ""
 }

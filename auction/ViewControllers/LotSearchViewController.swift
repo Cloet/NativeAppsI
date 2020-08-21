@@ -9,13 +9,16 @@
 import Foundation
 import UIKit
 
+// Search the API for lots.
 class LotSearchViewController: LotViewController, UITextFieldDelegate    {
     
+    // Field with searchterm
     @IBOutlet weak var searchTermTextField: UITextField!
     @IBAction func searchLots(_ sender: Any) {
         LoadData()
     }
     
+    // Search for lots based on a searchterm.
     override func LoadData() {
         let search = searchTermTextField.text
         AuctionAPI().getSearchLots(searchTerm: search ?? "", completion: { (data) in
@@ -33,6 +36,7 @@ class LotSearchViewController: LotViewController, UITextFieldDelegate    {
         searchTermTextField?.delegate = self
     }
     
+    // On enter.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         LoadData()
         searchTermTextField?.resignFirstResponder()

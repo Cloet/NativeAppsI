@@ -6,11 +6,11 @@
 //  Copyright © 2020 mathias cloet. All rights reserved.
 //
 
-import RealmSwift
+import Foundation
 
-class AuctionImage: Object, Decodable {
-    @objc dynamic var auctionID: Int = 0
-    @objc dynamic var id: Int = 0
-    @objc dynamic var imageLocation: String = ""
-    @objc dynamic var aspectRatio: Double = 1.0
+class AuctionImage: Decodable {
+    var auctionID: Int = 0
+    var id: Int = 0
+    var imageLocation: String = ""
+    var aspectRatio: Double = 1.0
 }

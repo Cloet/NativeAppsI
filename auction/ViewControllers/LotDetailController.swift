@@ -14,6 +14,7 @@ class LotDetailController: UIViewController {
     var lot: Lot?
     var images: [UIImage] = []
     
+    // Refresh callback
     var onRefresh: (() -> ())?
     
     // Tableview
@@ -34,15 +35,18 @@ class LotDetailController: UIViewController {
     @IBOutlet weak var lotBidButton: RoundedButton!
     @IBOutlet weak var lotFavoriteButton: RoundedButton!
     
-    @IBAction func addToFavorites(_ sender: Any) {
+    // Toggle favorited status
+    @IBAction func toggleFavorited(_ sender: Any) {
         toggleFavoriet()
         onRefresh?()
     }
     
+    // When bid button is clicked
     @IBAction func bidOnLot(_ sender: Any) {
         self.performSegue(withIdentifier: "showLotBid", sender: self)
     }
     
+    // Navigate to biddingcontroller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? LotBiddingController {
             controller.lot = self.lot
@@ -54,6 +58,7 @@ class LotDetailController: UIViewController {
         }        
     }
     
+    // Change the text of the favoritedbutton.
     func favorietButtonLabel(persisted: Bool) {
         var msg = "Toevoegen aan favorieten"
         
@@ -64,6 +69,7 @@ class LotDetailController: UIViewController {
         lotFavoriteButton.setTitle(msg, for: .normal)
     }
     
+    // Saves a new item to favorited or removes an existing one.
     func toggleFavoriet() {
         guard let lot = self.lot else {
             return
@@ -82,6 +88,7 @@ class LotDetailController: UIViewController {
         }
     }
     
+    // Setup the text of all the labels and retrieve images.
     func setupLot() {
         lotTitleLabel.text = lot?.title
         lotOverviewLabel.text = lot?.overview
@@ -117,6 +124,7 @@ class LotDetailController: UIViewController {
         favorietButtonLabel(persisted: lot?.alreadyPersisted() ?? false)
     }
     
+    // Called when view is loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -6,11 +6,11 @@
 //  Copyright © 2020 mathias cloet. All rights reserved.
 //
 
-import RealmSwift
+import Foundation
 
-class LotImage: Object, Decodable {
-    @objc dynamic var lotID: Int = 0
-    @objc dynamic var id: Int = 0
-    @objc dynamic var imageLocation: String = ""
-    @objc dynamic var aspectRatio: Double = 1.0
+class LotImage: Decodable {
+    var lotID: Int = 0
+    var id: Int = 0
+    var imageLocation: String = ""
+    var aspectRatio: Double = 1.0
 }

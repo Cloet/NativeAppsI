@@ -10,14 +10,20 @@ import Foundation
 import UIKit
 import RealmSwift
 
+// Inherits from LotCell
 class LotFavoritesCell: LotCell {
     
+    // The favorited lot
     var favLot: FavoriteLot?
+    
+    // Callback when a lot is removed.
     var onLotRemoved: (() -> ())?
     
     @IBOutlet weak var lotDeleteButton: RoundedButton!
     @IBOutlet weak var lotMyBid: UILabel!
     
+    // Remove a lot.
+    // Prevent deletion when you're the highest bidder.
     @IBAction func removeLot(_ sender: Any) {
         guard let lot = self.lot else {
             return
@@ -30,13 +36,13 @@ class LotFavoritesCell: LotCell {
         }
     }
     
-    // Remove lot from realm
-        
+            
     override func setLot(lot: Lot) {
         super.setLot(lot: lot)
         lotMyBid.text = "Mijn bod: € " + String(format: "%.2f", self.favLot?.myBid ?? 0)
     }
     
+    // Get the lot data.
     func setLotFavorite(favlot: FavoriteLot) {
         self.favLot = favlot
         

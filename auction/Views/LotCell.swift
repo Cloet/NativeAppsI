@@ -8,32 +8,35 @@
 
 import UIKit
 
-class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
+class LotCell : UITableViewCell {
     
-    
+    // The current lot
     var lot : Lot?
     
+    // Imageview, labels, button
     @IBOutlet weak var lotImage: UIImageView!
     @IBOutlet weak var lotTitleLabel: UILabel!
     @IBOutlet weak var lotHighestBid: UILabel!
-    
     @IBOutlet weak var lotBidButton: RoundedButton!
     @IBOutlet weak var lotCellContainer: UIView!
     @IBOutlet weak var lotFavoriteButton: UIButton!
     
-    
-    @IBAction func favoriteLot(_ sender: Any) {
+    // Toggle favorited status of a lot.
+    @IBAction func toggleFavorited(_ sender: Any) {
         toggleFavorite()
     }
     
+    // Callbacks
     var onHighestBidder: (() -> ())?
     var onInfoClick: (() -> ())?
     var onBidClick: (() -> ())?
-        
+    
+    // Bid on a lot.
     @IBAction func lotBid(_ sender: Any) {
         onBidClick?()
     }
     
+    // Toggle the favorited status of a lot.
     func toggleFavorite() {
         guard let lot = self.lot else {
             fatalError("Ongeldig lot.")
@@ -51,6 +54,7 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
         self.setContainer()
     }
     
+    // set border radius & shadows
     func setContainer() {
         
         lotBidButton?.BottomRightBorderRadius(radius: 20)
@@ -64,6 +68,9 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
         lotCellContainer?.layer.shadowOpacity = 0.6
     }
     
+    // Add ontap events on images.
+    // Double tap to toggle favorited status.
+    // Tap to go to detail.
     func setOnImageTap() {
         lotImage.isUserInteractionEnabled = true
         
@@ -79,6 +86,7 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
         gesture.require(toFail: tap)
     }
     
+    // Set the icon depending on the favorited status.
     func setFavoriteButtonIcon() {
         guard let lot = self.lot else {
             fatalError("Ongeldig lot.")
@@ -91,6 +99,7 @@ class LotCell : UITableViewCell, OnInfoButtonPress, OnBidButtonPress {
         }
     }
     
+    // Set all data of the lot.
     func setLot(lot: Lot) {
         self.lot = lot;
         

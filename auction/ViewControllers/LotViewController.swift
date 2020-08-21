@@ -8,16 +8,20 @@
 
 import UIKit
 
+// Show list of all lots
 class LotViewController : UIViewController {
     
+    // The parent auction
     var auction: Auction?
     
+    // connected labels
     @IBOutlet weak var auctionTitle: UILabel!
     @IBOutlet weak var auctionDescription: UILabel!
     @IBOutlet weak var lotTableView: UITableView!
     
     var lots: [Lot] = []
 
+    // Load all data
     func LoadData() {
         AuctionAPI().getLots(auctionId: auction!.id, completion: { (data) in
             guard let data = data else { return }
@@ -28,6 +32,7 @@ class LotViewController : UIViewController {
         })
     }
     
+    // Refreshed data of the controller
     func RefreshData() {
         auctionTitle?.text = auction?.title
         auctionDescription?.text = auction?.overview
@@ -36,6 +41,7 @@ class LotViewController : UIViewController {
         LoadData()
     }
     
+    // Called when the view has loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,11 +54,14 @@ class LotViewController : UIViewController {
                 
     }
     
+    // Refresh event
     @objc func refresh(sender: UIRefreshControl?) {
         RefreshData()
         sender?.endRefreshing()
     }
-        
+    
+    // Navigation override.
+    // Based on the identifier reload specific data.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "showLotBid" {
@@ -89,10 +98,14 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let lot = lots[indexPath.row]
+        
+        // The aspectratio is stored in the database.
+        // With the aspectratio and width the correct height can be calculated.
         let ratio = lot.images.first?.aspectRatio ?? 1.0
         
         var newHeight = CGFloat(tableView.bounds.width * CGFloat(ratio))
-        
+                        
+        // Set a maximum height for the images, the maxheight is different for ipad and phone
         if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) {
             if newHeight > 500 {
                 newHeight = 500
@@ -103,6 +116,7 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
+        // The calculated height of the image + 100 for labels etc.
         return (newHeight+100)
     }
     
@@ -113,14 +127,17 @@ extension LotViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.setup(lot: lot)
         
+        // Navigate to LotDetail
         cell.onInfoClick = { [weak self] in
             self?.performSegue(withIdentifier: "showLotDetail", sender: cell)
         }
         
+        // Navigate to biddingcontroller
         cell.onBidClick = { [weak self] in
             self?.performSegue(withIdentifier: "showLotBid", sender: cell)
         }
         
+        // Show an alert when the user is the highest bidder.
         cell.onHighestBidder = { [weak self] in
             self?.showOKAlert(title: lot.title ?? "Lot", message: "Dit lot kan niet verwijderd worden. U bent momenteel de hoogste bieder.")
         }

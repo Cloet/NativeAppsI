@@ -35,7 +35,6 @@
 		8496E0DB24DEF364005CEB38 /* LotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E0DA24DEF364005CEB38 /* LotCell.swift */; };
 		8496E0DD24DF1741005CEB38 /* LotDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E0DC24DF1741005CEB38 /* LotDetailController.swift */; };
 		8496E0DF24DF3218005CEB38 /* LotDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E0DE24DF3218005CEB38 /* LotDetailCell.swift */; };
-		8496E0E224DF3458005CEB38 /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E0E124DF3458005CEB38 /* Delegates.swift */; };
 		8497DE6124E305F4004508D1 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497DE6024E305F4004508D1 /* RoundedButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +71,6 @@
 		8496E0DA24DEF364005CEB38 /* LotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotCell.swift; sourceTree = "<group>"; };
 		8496E0DC24DF1741005CEB38 /* LotDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotDetailController.swift; sourceTree = "<group>"; };
 		8496E0DE24DF3218005CEB38 /* LotDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotDetailCell.swift; sourceTree = "<group>"; };
-		8496E0E124DF3458005CEB38 /* Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
 		8497DE6024E305F4004508D1 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,7 +183,6 @@
 		8496E0E024DF3448005CEB38 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8496E0E124DF3458005CEB38 /* Delegates.swift */,
 				8430669F24E46DF2008C8508 /* extensions.swift */,
 			);
 			path = Helpers;
@@ -336,7 +333,6 @@
 				842FAB0524EEFC6B00E1047A /* AuctionJSONDecoder.swift in Sources */,
 				8496E0DD24DF1741005CEB38 /* LotDetailController.swift in Sources */,
 				843066A624E48542008C8508 /* FavoriteLot.swift in Sources */,
-				8496E0E224DF3458005CEB38 /* Delegates.swift in Sources */,
 				8430F1D424E1AEAC00EA6A0E /* AuctionAPI.swift in Sources */,
 				843066A224E47B02008C8508 /* LotFavoritesViewController.swift in Sources */,
 				8430F1D224E1AE6A00EA6A0E /* AuctionListViewController.swift in Sources */,
