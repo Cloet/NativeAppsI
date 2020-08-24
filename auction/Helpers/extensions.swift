@@ -127,7 +127,8 @@ extension UITableViewDataSource {
 }
 
 extension UITextField {
-    func addDoneButtonToKeyboard(myAction:Selector?){
+    // Source : https://stackoverflow.com/questions/38133853/how-to-add-a-return-key-on-a-decimal-pad-in-swift
+    func addDoneButtonToKeyboard(myAction:Selector?) {
        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
        doneToolbar.barStyle = UIBarStyle.default
 

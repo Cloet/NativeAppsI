@@ -121,7 +121,6 @@ class LotBiddingController: UIViewController {
         myBid.addDoneButtonToKeyboard(myAction:  #selector(self.myBid.resignFirstResponder))
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
-
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
        
