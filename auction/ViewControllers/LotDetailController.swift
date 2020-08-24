@@ -85,6 +85,7 @@ class LotDetailController: UIViewController {
         } else {
             self.lot?.persistToRealm()
             self.showOKAlert(title: self.lot?.title ?? "Lot", message: "Lot toegevoegd aan favorieten.")
+            favorietButtonLabel(persisted: true)
         }
     }
     
