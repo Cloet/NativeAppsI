@@ -24,11 +24,14 @@ class LotBiddingController: UIViewController {
     @IBOutlet weak var lotMinNextBid: UILabel!
     @IBOutlet weak var lotAmntOfBids: UILabel!
     @IBOutlet weak var lotBidError: UILabel!
-
-    @IBOutlet weak var lotView: UIView!
+    @IBOutlet weak var lotMyBid: UILabel!
+    @IBOutlet weak var myBidStackView: UIStackView!
     
     // The field where the bid is entered
     @IBOutlet weak var myBid: UITextField!
+    
+    // Stackview
+    @IBOutlet weak var lotStackView: UIStackView!
     
     // Callback to refresh the view from which it originated.
     var onCallback: ((Lot) -> (Void))?
@@ -59,6 +62,7 @@ class LotBiddingController: UIViewController {
                             
                             // toevoegen aan realm
                             self.lot?.updateFavoritedLotBid(bid: bid)
+                            self.myBid.text = ""
                             self.RefreshLot()
                         } else {
                             self.lotBidError?.text = data.errorMessage
@@ -90,9 +94,9 @@ class LotBiddingController: UIViewController {
         lotTitle?.text = lot?.title
         lotOverview?.text = lot?.overview
         
-        lotStartBid?.text = "Openingsbod: € " + String(format: "%.2f", lot?.openingsBid ?? 0)
-        lotCurrentBid?.text = "Huidig bod: € " + String(format: "%.2f", lot?.currentBid ?? 0)
-        lotBid?.text = "Opbod: € " + String(format: "%.2f", lot?.bid ?? 0)
+        lotStartBid?.text = "€ " + String(format: "%.2f", lot?.openingsBid ?? 0)
+        lotCurrentBid?.text = "€ " + String(format: "%.2f", lot?.currentBid ?? 0)
+        lotBid?.text = "€ " + String(format: "%.2f", lot?.bid ?? 0)
         
         var nextBid = 0.0
         if (lot?.currentBid != lot?.openingsBid) {
@@ -103,10 +107,26 @@ class LotBiddingController: UIViewController {
             nextBid = lot?.openingsBid ?? 0
         }
         
-        lotMinNextBid?.text = "Min. volgend bod: € " + String(format: "%.2f", nextBid)
+        lotMinNextBid?.text = "€ " + String(format: "%.2f", nextBid)
         
-        lotAmntOfBids?.text = "Aantal biedingen: \(lot?.amountOfBids ?? 0)"
+        lotAmntOfBids?.text = "\(lot?.amountOfBids ?? 0)"
         
+        guard let lot = lot else {
+            myBidStackView?.isHidden = true
+            return
+        }
+        
+        let favLot = lot.getFavoritedLot(lotId: lot.id)
+        if (favLot != nil) {
+            lotMyBid?.text = "€ " + String(format: "%.2f", favLot?.myBid ?? 0)
+            myBidStackView?.isHidden = (favLot?.myBid == 0)
+        } else {
+            myBidStackView?.isHidden = true
+        }
+        
+        lotStackView?.sizeToFit()
+        lotStackView?.layoutIfNeeded()
+                
     }
     
     override func viewDidLoad() {
@@ -125,11 +145,11 @@ class LotBiddingController: UIViewController {
     }
        
     @objc func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y = -190
+        lotOverview.numberOfLines = 4
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y = 0
+        lotOverview.numberOfLines = 0
     }
         
 }

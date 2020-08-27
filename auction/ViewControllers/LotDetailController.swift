@@ -30,7 +30,14 @@ class LotDetailController: UIViewController {
     @IBOutlet weak var lotBid: UILabel!
     @IBOutlet weak var lotMinBid: UILabel!
     @IBOutlet weak var lotAmntBids: UILabel!
-        
+    @IBOutlet weak var lotMyBid: UILabel!
+    
+    // Hidden if no bid is made.
+    @IBOutlet weak var lotStackViewMyBid: UIStackView!
+    
+    // Main Stackview
+    @IBOutlet weak var lotVerticalStackView: UIStackView!
+    
     // Button
     @IBOutlet weak var lotBidButton: RoundedButton!
     @IBOutlet weak var lotFavoriteButton: RoundedButton!
@@ -94,10 +101,10 @@ class LotDetailController: UIViewController {
         lotTitleLabel.text = lot?.title
         lotOverviewLabel.text = lot?.overview
         
-        lotOpeningsBid.text = "Openingsbod: € " + String(format: "%.2f", lot?.openingsBid ?? 0)
-        lotHighestBid.text = "Hoogste bod: € " + String(format: "%.2f", lot?.currentBid ?? 0)
-        lotBid.text = "Opbod: € " + String(format: "%.2f", lot?.bid ?? 0)
-        lotAmntBids.text = "Aantal biedingen: \(lot?.amountOfBids ?? 0)"
+        lotOpeningsBid.text = "€ " + String(format: "%.2f", lot?.openingsBid ?? 0)
+        lotHighestBid.text = "€ " + String(format: "%.2f", lot?.currentBid ?? 0)
+        lotBid.text = "€ " + String(format: "%.2f", lot?.bid ?? 0)
+        lotAmntBids.text = "\(lot?.amountOfBids ?? 0)"
         
         var nextBid = 0.0
         if let currentBid = lot?.currentBid, let openingsbid = lot?.openingsBid {
@@ -109,11 +116,15 @@ class LotDetailController: UIViewController {
                 }
             }
         }
-        lotMinBid.text = "Min. volgend bod: € " + String(format: "%.2f", nextBid)
+        lotMinBid.text = "€ " + String(format: "%.2f", nextBid)
         
         lotBidButton.layer.cornerRadius = 5
         
-        AuctionAPI().getLotImages(lot: self.lot!, completion: { (data) in
+        guard let lot = lot else {
+            return
+        }
+        
+        AuctionAPI().getLotImages(lot: lot, completion: { (data) in
             guard let data = data else {return}
             self.images = data
             DispatchQueue.main.async {
@@ -122,7 +133,18 @@ class LotDetailController: UIViewController {
             }
         })
         
-        favorietButtonLabel(persisted: lot?.alreadyPersisted() ?? false)
+        favorietButtonLabel(persisted: lot.alreadyPersisted())
+        
+        let favLot = lot.getFavoritedLot(lotId: lot.id)
+        if (favLot == nil) {
+            lotStackViewMyBid.isHidden = true
+        } else {
+            lotMyBid?.text = "€ " + String(format: "%.2f", favLot?.myBid ?? 0)
+            lotStackViewMyBid.isHidden = (favLot?.myBid ?? 0 == 0)
+        }
+        
+        lotVerticalStackView.sizeToFit()
+        lotVerticalStackView.layoutIfNeeded()
     }
     
     // Called when view is loaded.

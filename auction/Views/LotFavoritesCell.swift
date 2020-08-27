@@ -36,7 +36,12 @@ class LotFavoritesCell: LotCell {
         }
     }
     
-            
+    override func toggleFavorite() {
+        // Skip this event.
+        // super.toggleFavorite()
+        // onLotRemoved?()
+    }
+    
     override func setLot(lot: Lot) {
         super.setLot(lot: lot)
         lotMyBid.text = "Mijn bod: € " + String(format: "%.2f", self.favLot?.myBid ?? 0)

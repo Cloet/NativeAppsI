@@ -26,8 +26,12 @@ class LotFavoritesViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         
-        RefreshData()
         tableView.AddRefreshControl(target: self, action: #selector(self.refresh(sender:)))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        RefreshData()
     }
     
     @objc func refresh(sender: UIRefreshControl?) {

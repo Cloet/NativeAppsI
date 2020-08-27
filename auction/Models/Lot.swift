@@ -69,7 +69,8 @@ class Lot: Decodable {
         
         let favLot = getFavoritedLot(lotId: self.id)
         guard let lot = favLot else {
-            fatalError("No favorited lot found.")
+            print("No favorited lot was found.")
+            return
         }
         
         // lot kan niet verwijderd worden als je het hoogste bod hebt.

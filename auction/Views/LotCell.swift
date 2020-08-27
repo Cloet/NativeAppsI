@@ -39,7 +39,8 @@ class LotCell : UITableViewCell {
     // Toggle the favorited status of a lot.
     func toggleFavorite() {
         guard let lot = self.lot else {
-            fatalError("Ongeldig lot.")
+            print("Ongeldig lot.")
+            return
         }
         if (!lot.highestBidder()) {
             lot.toggleFavorited()
@@ -61,7 +62,7 @@ class LotCell : UITableViewCell {
         
         lotCellContainer?.layer.borderWidth = 1
         lotCellContainer?.layer.cornerRadius = 20
-                
+            
         lotCellContainer?.layer.shadowPath = UIBezierPath(roundedRect: lotCellContainer.bounds, cornerRadius: 20).cgPath
         lotCellContainer?.layer.shadowRadius = 4
         lotCellContainer?.layer.shadowOffset = .zero
