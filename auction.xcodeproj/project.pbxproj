@@ -15,7 +15,6 @@
 		842B436624DB39C300386CA7 /* LotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436524DB39C300386CA7 /* LotViewController.swift */; };
 		842B436824DB4EFA00386CA7 /* Lot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B436724DB4EFA00386CA7 /* Lot.swift */; };
 		842FAB0524EEFC6B00E1047A /* AuctionJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FAB0424EEFC6B00E1047A /* AuctionJSONDecoder.swift */; };
-		8430669E24E462D2008C8508 /* TextOffsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430669D24E462D2008C8508 /* TextOffsetLabel.swift */; };
 		843066A024E46DF2008C8508 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430669F24E46DF2008C8508 /* extensions.swift */; };
 		843066A224E47B02008C8508 /* LotFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843066A124E47B02008C8508 /* LotFavoritesViewController.swift */; };
 		843066A424E48377008C8508 /* LotFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843066A324E48377008C8508 /* LotFavoritesCell.swift */; };
@@ -49,7 +48,6 @@
 		842B436524DB39C300386CA7 /* LotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewController.swift; sourceTree = "<group>"; };
 		842B436724DB4EFA00386CA7 /* Lot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lot.swift; sourceTree = "<group>"; };
 		842FAB0424EEFC6B00E1047A /* AuctionJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionJSONDecoder.swift; sourceTree = "<group>"; };
-		8430669D24E462D2008C8508 /* TextOffsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOffsetLabel.swift; sourceTree = "<group>"; };
 		8430669F24E46DF2008C8508 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		843066A124E47B02008C8508 /* LotFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotFavoritesViewController.swift; sourceTree = "<group>"; };
 		843066A324E48377008C8508 /* LotFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotFavoritesCell.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				8497DE6024E305F4004508D1 /* RoundedButton.swift */,
-				8430669D24E462D2008C8508 /* TextOffsetLabel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -324,7 +321,6 @@
 				841F791B24D8A15100F987F9 /* AuctionCollectionCell.swift in Sources */,
 				8482A50024D725EC00E41494 /* ViewController.swift in Sources */,
 				8497DE6124E305F4004508D1 /* RoundedButton.swift in Sources */,
-				8430669E24E462D2008C8508 /* TextOffsetLabel.swift in Sources */,
 				8496E0D924DEB3BB005CEB38 /* LotImage.swift in Sources */,
 				8430F1D624E1D1A800EA6A0E /* LotBiddingController.swift in Sources */,
 				8482A4FC24D725EC00E41494 /* AppDelegate.swift in Sources */,

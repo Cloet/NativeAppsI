@@ -58,6 +58,8 @@ class LotFavoritesCell: LotCell {
         lotDeleteButton?.layer.cornerRadius = 0
         lotDeleteButton?.BottomRightBorderRadius(radius: 20)
         
+        // Set to nil before getting the image.
+        lotImage.image = UIImage(contentsOfFile: "Placeholder")
         AuctionAPI().getLot(lotId: favlot.lotId, completion: { (data) in
             guard let data = data else { return }
             DispatchQueue.main.async {

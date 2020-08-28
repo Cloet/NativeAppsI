@@ -27,7 +27,6 @@ class AuctionCell: UITableViewCell {
     func setAuction(auction: Auction) {
         self.auction = auction
         
-
         UpdateAuctionTitleLabel()
 
         UpdateTimeLabel()
@@ -39,6 +38,7 @@ class AuctionCell: UITableViewCell {
         auctionImageCollection.delegate = self
         auctionImageCollection.dataSource = self
         
+        self.auctionImageCollection.reloadData()
         // Retrieve all images for the auction from api.
         AuctionAPI().getImages(auction: auction, completion: { (data) in
             guard let data = data else  { return}
@@ -142,9 +142,13 @@ extension AuctionCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AuctionImageCollectionCell", for: indexPath) as! AuctionCollectionCell
 
-        let image = images[indexPath.row]
-        cell.setImage(image: image)
-                
+        if (images.count <= 0) {
+            cell.setImage(image: UIImage(named: "Placeholder")!)
+        } else {
+            let image = images[indexPath.row]
+            cell.setImage(image: image)
+        }
+                        
         return cell
     }
         

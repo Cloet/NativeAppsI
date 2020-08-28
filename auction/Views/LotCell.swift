@@ -116,7 +116,7 @@ class LotCell : UITableViewCell {
         lotHighestBid.text = "\(prefix) € " + String(format: "%.2f",self.lot?.currentBid ?? 0)
         
         // Init the image as nil -> images can glitch otherwise
-        lotImage.image = nil
+        lotImage.image = UIImage(contentsOfFile: "Placeholder")
         
         // Load the first image from the lot image array
         if (lot.images.first?.id ?? -1 > 0) {
