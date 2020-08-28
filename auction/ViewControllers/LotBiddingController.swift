@@ -145,7 +145,7 @@ class LotBiddingController: UIViewController {
     }
        
     @objc func keyboardWillShow(sender: NSNotification) {
-        lotOverview.numberOfLines = 4
+        lotOverview.numberOfLines = 5
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {

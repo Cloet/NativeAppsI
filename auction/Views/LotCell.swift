@@ -58,8 +58,6 @@ class LotCell : UITableViewCell {
     // set border radius & shadows
     func setContainer() {
         
-        lotBidButton?.BottomRightBorderRadius(radius: 20)
-        
         lotCellContainer?.layer.borderWidth = 1
         lotCellContainer?.layer.cornerRadius = 20
             
@@ -67,6 +65,10 @@ class LotCell : UITableViewCell {
         lotCellContainer?.layer.shadowRadius = 4
         lotCellContainer?.layer.shadowOffset = .zero
         lotCellContainer?.layer.shadowOpacity = 0.6
+    }
+    
+    func setBidButtonLayout() {
+        lotBidButton?.BottomRightBorderRadius(radius: 20)
     }
     
     // Add ontap events on images.
@@ -90,7 +92,8 @@ class LotCell : UITableViewCell {
     // Set the icon depending on the favorited status.
     func setFavoriteButtonIcon() {
         guard let lot = self.lot else {
-            fatalError("Ongeldig lot.")
+            print ("Ongeldig lot.")
+            return
         }
         
         if (lot.alreadyPersisted()) {
@@ -126,6 +129,7 @@ class LotCell : UITableViewCell {
                     self.lotImage.image = data
                     self.setOnImageTap()
                     self.lotImage.TopLeftRightRadius(radii: 20)
+                    self.setBidButtonLayout()
                 }
             })
         }

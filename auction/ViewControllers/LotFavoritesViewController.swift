@@ -16,7 +16,7 @@ class LotFavoritesViewController: UIViewController {
     // All favorited lots
     var lots: [FavoriteLot] = []
     @IBOutlet weak var tableView: UITableView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         

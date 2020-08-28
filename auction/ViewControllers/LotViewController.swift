@@ -28,6 +28,7 @@ class LotViewController : UIViewController {
             self.lots = data
             DispatchQueue.main.async {
                 self.lotTableView.reloadData()
+                self.lotTableView.sizeHeaderToFit()
             }
         })
     }

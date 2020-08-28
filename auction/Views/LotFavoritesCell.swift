@@ -42,24 +42,28 @@ class LotFavoritesCell: LotCell {
         // onLotRemoved?()
     }
     
+    override func setBidButtonLayout() {
+        // Skip layout
+    }
+    
     override func setLot(lot: Lot) {
         super.setLot(lot: lot)
         lotMyBid.text = "Mijn bod: € " + String(format: "%.2f", self.favLot?.myBid ?? 0)
+        
+        lotDeleteButton?.layer.cornerRadius = 0
+        lotDeleteButton?.BottomRightBorderRadius(radius: 20)
     }
     
     // Get the lot data.
     func setLotFavorite(favlot: FavoriteLot) {
         self.favLot = favlot
         
-        self.setContainer()
+        setContainer()
         
         lotBidButton?.layer.cornerRadius = 0
         lotBidButton?.layer.mask = nil
-        lotDeleteButton?.layer.cornerRadius = 0
-        lotDeleteButton?.BottomRightBorderRadius(radius: 20)
         
         // Set to nil before getting the image.
-        lotImage.image = UIImage(contentsOfFile: "Placeholder")
         AuctionAPI().getLot(lotId: favlot.lotId, completion: { (data) in
             guard let data = data else { return }
             DispatchQueue.main.async {
