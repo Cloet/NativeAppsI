@@ -14,3 +14,7 @@ The app should just run using the xcode project.
 
 For this application an API was written using .net core with a PostgreSQL database implementation.
 More information about the service can be found @ https://github.com/Cloet/veilingservice
+
+ # Screenshots
+ 
+ ![Merged Screenshots](img/screenshot1.jpg)
