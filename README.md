@@ -16,5 +16,6 @@ For this application an API was written using .net core with a PostgreSQL databa
 More information about the service can be found @ https://github.com/Cloet/veilingservice
 
  # Screenshots
+ Some screenshot, taken on a iPhone 7 with dark mode on.
  
  ![Merged Screenshots](img/screenshot1.jpg)
