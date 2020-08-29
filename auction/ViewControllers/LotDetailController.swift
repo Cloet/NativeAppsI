@@ -159,6 +159,12 @@ class LotDetailController: UIViewController {
         lotDetailTableview.separatorStyle = .none
     }
     
+    // When changing from portrait to landscape on ipad -> tableviewheader doesn't display properly
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.setupLot()
+    }
+    
     @objc func refresh(sender: UIRefreshControl?) {
         setupLot()
         sender?.endRefreshing()
@@ -177,8 +183,8 @@ extension LotDetailController: UITableViewDataSource, UITableViewDelegate {
         
         var newHeight = CGFloat(tableView.bounds.width * CGFloat(ratio))
              
-        if newHeight > 400 {
-            newHeight = 400
+        if newHeight > 600 {
+            newHeight = 600
         }
         
         return newHeight

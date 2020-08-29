@@ -50,6 +50,12 @@ class AuctionListViewController: UIViewController {
         }
     }
     
+    // When changing from portrait to landscape on ipad -> image doesn't properly resize
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.tableView.reloadData()
+    }
+    
     @objc func onRefresh(sender: UIRefreshControl?) {
         self.setupAuctions()
         sender?.endRefreshing()
